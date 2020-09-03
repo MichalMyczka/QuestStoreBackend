@@ -30,7 +30,7 @@ public class UserDao extends Dao {
         String user_Surname = results.getString("Surname");
         int phone = results.getInt("Phone");
         String email = results.getString("Email");
-        int role_ID = results.getInt("role_ID");
+        int role_ID = results.getInt("Role_ID");
         String password = results.getString("Password");
         int balance = results.getInt("Balance");
         boolean is_Active = results.getBoolean("Is_Active");
@@ -41,7 +41,7 @@ public class UserDao extends Dao {
     public User getUser(String email, String password) {
         connect();
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE email = ? AND password = ?;");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE Email = ? AND Password = ?;");
             statement.setString(1, email);
             statement.setString(2, password);
             ResultSet results = statement.executeQuery();

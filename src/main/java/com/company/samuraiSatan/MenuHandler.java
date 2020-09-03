@@ -87,11 +87,11 @@ public class MenuHandler {
 //funkcje tutaj czy gdzies indziej???
     private void initializeCreepMenu(User user) {
         creepMenu = new HashMap<>();
-        creepMenu.put(1, user::addUser);
-        creepMenu.put(2, user::createNewClass);
-        creepMenu.put(3, user::editMentorProfile);
-        creepMenu.put(4, user::showMentorProfile);
-        creepMenu.put(5, user::createNewLevelOfExperience);
+//        creepMenu.put(1, user::addUser);
+//        creepMenu.put(2, user::createNewClass);
+//        creepMenu.put(3, user::editMentorProfile);
+//        creepMenu.put(4, user::showMentorProfile);
+//        creepMenu.put(5, user::createNewLevelOfExperience);
         creepMenu.put(6, this::isLogin);
     }
 
@@ -106,13 +106,13 @@ public class MenuHandler {
 //funkcje tutaj czy gdzies indziej???
     private void initializeMentorMenu(User user) {
         mentorMenu = new HashMap<>();
-        mentorMenu.put(1, user::addUser);
-        mentorMenu.put(2, user::addNewQuest);
-        mentorMenu.put(3, user::addNewArtifact);
-        mentorMenu.put(4, user::updateQuest);
-        mentorMenu.put(5, user::updateArtifact);
-        mentorMenu.put(6, user::markQuestAsDone);
-        mentorMenu.put(7, user::showStudentWallet);
+//        mentorMenu.put(1, user::addUser);
+//        mentorMenu.put(2, user::addNewQuest);
+//        mentorMenu.put(3, user::addNewArtifact);
+//        mentorMenu.put(4, user::updateQuest);
+//        mentorMenu.put(5, user::updateArtifact);
+//        mentorMenu.put(6, user::markQuestAsDone);
+//        mentorMenu.put(7, user::showStudentWallet);
         mentorMenu.put(8, this::isLogin);
     }
 
@@ -128,11 +128,11 @@ public class MenuHandler {
 //funkcje tutaj czy gdzies indziej???
     private void initializeStudentMenu(User user) {
         studentMenu = new HashMap<>();
-        studentMenu.put(1, user::showMyWallet);
-        studentMenu.put(2, user::buyArtifact);
-        studentMenu.put(3, user::showMyLevelOfExperience);
-        studentMenu.put(4, user::showAvailableQuests);
-        studentMenu.put(5, user::sumbitQuest);
+//        studentMenu.put(1, user::showMyWallet);
+//        studentMenu.put(2, user::buyArtifact);
+//        studentMenu.put(3, user::showMyLevelOfExperience);
+//        studentMenu.put(4, user::showAvailableQuests);
+//        studentMenu.put(5, user::sumbitQuest);
         studentMenu.put(6, this::isLogin);
     }
 
