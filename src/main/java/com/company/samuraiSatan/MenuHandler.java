@@ -112,7 +112,7 @@ public class MenuHandler {
         mentorMenu.put(1, user::createNewCodecooler);
         mentorMenu.put(2, user::createNewQuest);
         mentorMenu.put(3, user::createNewArtifact);
-//        mentorMenu.put(4, user::updateQuest);
+        mentorMenu.put(4, this::updateQuestData);
 //        mentorMenu.put(5, user::updateArtifact);
 //        mentorMenu.put(6, user::markQuestAsDone);
 //        mentorMenu.put(7, user::showStudentWallet);
@@ -125,6 +125,21 @@ public class MenuHandler {
             int userChoice = io.gatherIntInput("\nEnter a number: ",1,8);
             mentorMenu.get(userChoice).run();
         }
+    }
+
+    private void updateQuestData() {
+        System.out.println("Editing Quest");
+        questsDao.showAllQuests();
+        List<Quest> quests = questsDao.getQuests();
+        int id = io.gatherIntInput("Enter ID of quest to change: ",1, questsDao.getQuests().size());
+        Quest quest = quests.get(id-1);
+        String name = io.gatherInput("Enter new name of the quest: ");
+        quest.setName(name);
+        int reward = io.gatherIntInput("Enter new reward of the quest: ", (int) 1, 99999);
+        quest.setReward(reward);
+        String description = io.gatherInput("Enter new description of the quest: ");
+        quest.setDescription(description);
+        questsDao.updateQuest(quest);
     }
 
 //----------------------------------------------------------------------------------------------------------------------

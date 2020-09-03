@@ -1,12 +1,14 @@
 package com.company.samuraiSatan.dao;
 
 import com.company.samuraiSatan.models.Quest;
+import com.company.samuraiSatan.models.User;
 import com.jakewharton.fliptables.FlipTableConverters;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class QuestDao extends Dao {
 
@@ -14,7 +16,7 @@ public class QuestDao extends Dao {
         List<Quest> quests = new ArrayList<>();
         connect();
         try {
-            ResultSet results = statement.executeQuery("SELECT * FROM public.\"Quests\";");
+            ResultSet results = statement.executeQuery("SELECT * FROM public.\"Quests\" ORDER BY \"Quest_ID\";");
             while (results.next()) {
                 quests.add(createQuest(results));
             }
@@ -58,4 +60,37 @@ public class QuestDao extends Dao {
             e.printStackTrace();
         }
     }
+
+    public void showAllQuests() {
+        String sql = "SELECT * FROM public.\"Quests\" ORDER BY \"Quest_ID\"";
+        connect();
+        try {
+            ResultSet rs = statement.executeQuery(sql);
+            System.out.println(FlipTableConverters.fromResultSet(rs));
+            rs.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateQuest(Quest quest) {
+        PreparedStatement editQuest;
+        connect();
+        String sql = "UPDATE public.\"Quests\" SET \"Quest_Name\" = ?, \"Reward\" = ?, \"Description\" = ? WHERE \"Quest_ID\" = ?";
+        try {
+            editQuest = connection.prepareStatement(sql);
+            editQuest.setString(1, quest.getQuest_Name());
+            editQuest.setInt(2, quest.getReward());
+            editQuest.setString(3, quest.getDescription());
+            editQuest.setInt(4, quest.getQuest_ID());
+            editQuest.executeUpdate();
+            editQuest.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
