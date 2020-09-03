@@ -13,8 +13,9 @@ public class Artifact {
     private String description;
     private boolean is_Solo;
     private int collected;
+    private boolean is_Used;
 
-    public Artifact(int artifact_ID, String artifact_Name, int cost, boolean is_Active, String description, boolean is_Solo, int collected) {
+    public Artifact(int artifact_ID, String artifact_Name, int cost, boolean is_Active, String description, boolean is_Solo, int collected, boolean is_Used) {
         this.artifact_ID = artifact_ID;
         this.artifact_Name = artifact_Name;
         this.cost = cost;
@@ -22,6 +23,7 @@ public class Artifact {
         this.description = description;
         this.is_Solo = is_Solo;
         this.collected = collected;
+        this.is_Used = is_Used;
     }
 
     public int getArtifact_ID() {
@@ -48,6 +50,10 @@ public class Artifact {
         return is_Solo;
     }
 
+    public boolean getIs_Used() {
+        return is_Used;
+    }
+
     public int getCollected() {
         return collected;
     }
@@ -70,6 +76,10 @@ public class Artifact {
 
     public void setIs_Solo(boolean is_Solo) {
         this.is_Solo = is_Solo;
+    }
+
+    public void setIs_Used(boolean is_Used) {
+        this.is_Used = is_Used;
     }
 
     public void setCollected(int collected) {

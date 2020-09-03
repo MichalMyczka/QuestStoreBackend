@@ -1,6 +1,7 @@
 package com.company.samuraiSatan.models;
 
 import com.company.samuraiSatan.IO;
+import com.company.samuraiSatan.dao.ArtifactDao;
 import com.company.samuraiSatan.dao.QuestDao;
 import com.jakewharton.fliptables.FlipTable;
 import com.company.samuraiSatan.dao.UserDao;
@@ -22,6 +23,7 @@ public class User {
     private final IO io = new IO();
     private final UserDao userDao = new UserDao();
     private final QuestDao questDao = new QuestDao();
+    private final ArtifactDao artifactDao = new ArtifactDao();
 
     public User(int user_ID, String user_Name, String user_Surname, int phone, String email, int role_ID, String password, int balance, boolean is_Active, String purchased) {
         this.user_ID = user_ID;
@@ -157,16 +159,32 @@ public class User {
     public void createNewQuest() {
         String name = io.gatherInput("Enter quest name: ");
         int reward = io.gatherIntInput("Enter reward: ", 0, Integer.MAX_VALUE);
-        String description = io.gatherInput("Enter quest desctiption: ");
+        String description = io.gatherInput("Enter quest description: ");
         boolean is_Active = true;
         boolean is_Done = false;
         boolean evaluation = false;
         boolean is_Basic = false;
-        String purchased = null;
         try {
             Quest quest = new Quest(0, name, reward, is_Active, description, is_Done, evaluation, is_Basic);
             questDao.addQuest(quest);
             io.gatherEmptyInput("Quest successfully created!\nPress any ket to back to main menu");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createNewArtifact() {
+        String name = io.gatherInput("Enter artifact name: ");
+        int cost = io.gatherIntInput("Enter cost: ", 0, Integer.MAX_VALUE);
+        String description = io.gatherInput("Enter Artifact description: ");
+        int collected = 0;
+        boolean is_Active = true;
+        boolean is_Solo = false;
+        boolean is_Used = false;
+        try {
+            Artifact artifact = new Artifact(0, name, cost, is_Active, description, is_Solo, collected, is_Used);
+            artifactDao.addNewArtifact(artifact);
+            io.gatherEmptyInput("Artifact successfully created!\nPress any ket to back to main menu");
         } catch (Exception e) {
             e.printStackTrace();
         }

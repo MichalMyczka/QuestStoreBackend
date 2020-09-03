@@ -56,7 +56,7 @@ public class UI {
         Map<Integer, String> mentorChoiceMap = new HashMap<>();
         mentorChoiceMap.put(1, "Create new Student account");
         mentorChoiceMap.put(2, "Add new quest");
-        mentorChoiceMap.put(3, "Add new artifact to store");
+        mentorChoiceMap.put(3, "Add new artifact");
         mentorChoiceMap.put(4, "Update quests");
         mentorChoiceMap.put(5, "Update artifacts");
         mentorChoiceMap.put(6, "Mark quest as done");
