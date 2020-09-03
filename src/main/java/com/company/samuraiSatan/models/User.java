@@ -18,6 +18,8 @@ public class User {
     private int balance;
     private boolean is_Active;
     private String purchased;
+    private final IO io = new IO();
+    private final UserDao userDao = new UserDao();
 
     public User(int user_ID, String user_Name, String user_Surname, int phone, String email, int role_ID, String password, int balance, boolean is_Active, String purchased) {
         this.user_ID = user_ID;
@@ -107,4 +109,25 @@ public class User {
     public void setPurchased(String purchased) {
         this.purchased = purchased;
     }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    public void createNewUser() {
+        String name = io.gatherInput("Enter user name: ");
+        String surname = io.gatherInput("Enter user surname: ");
+        String password = io.gatherInput("Enter user password: ");
+        int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
+        String email = io.gatherInput("Enter user email: ");
+        int role = 2;
+        int balance = 0;
+        boolean is_Active = true;
+        String purchased = null;
+        try {
+            User user = new User(0, name, surname, phone, email, role, password, balance, is_Active, purchased);
+            userDao.addUser(user);
+            io.gatherEmptyInput("Account successfully created!\nPress any ket to back to main menu");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+}
 }

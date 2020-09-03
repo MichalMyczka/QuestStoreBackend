@@ -87,7 +87,7 @@ public class MenuHandler {
 //funkcje tutaj czy gdzies indziej???
     private void initializeCreepMenu(User user) {
         creepMenu = new HashMap<>();
-//        creepMenu.put(1, user::addUser);
+        creepMenu.put(1, user::createNewUser);
 //        creepMenu.put(2, user::createNewClass);
 //        creepMenu.put(3, user::editMentorProfile);
 //        creepMenu.put(4, user::showMentorProfile);
@@ -106,7 +106,7 @@ public class MenuHandler {
 //funkcje tutaj czy gdzies indziej???
     private void initializeMentorMenu(User user) {
         mentorMenu = new HashMap<>();
-//        mentorMenu.put(1, user::addUser);
+//        mentorMenu.put(1, user::createNewUser);
 //        mentorMenu.put(2, user::addNewQuest);
 //        mentorMenu.put(3, user::addNewArtifact);
 //        mentorMenu.put(4, user::updateQuest);
