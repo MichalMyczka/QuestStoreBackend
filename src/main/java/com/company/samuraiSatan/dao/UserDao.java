@@ -48,7 +48,6 @@ public class UserDao extends Dao {
             results.next();
             List<User> users = getUsers();
             int indexDifference = 1;
-            System.out.println(indexDifference);
             int user_ID = results.getInt("User_ID") - indexDifference;
             results.close();
             statement.close();
@@ -63,18 +62,18 @@ public class UserDao extends Dao {
     public void addUser(User user) {
         connect();
         PreparedStatement addUser;
-        String sql = "INSERT INTO Users (Name, Surname, Phone, Email, Role_ID, Password, Balance, Is_Active, Purchased) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO public.\"Users\" (\"Name\", \"Surname\", \"Phone\", \"Email\", \"Role_ID\", \"Password\", \"Balance\", \"Is_Active\", \"Purchased\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             addUser = connection.prepareStatement(sql);
             addUser.setString(1, user.getUser_Name());
-            addUser.setString(2, user.getUser_Name());
+            addUser.setString(2, user.getUser_Surname());
             addUser.setInt(3, user.getPhone());
-            addUser.setString(3, user.getEmail());
-            addUser.setInt(4, user.getRole_ID());
-            addUser.setString(4, user.getPassword());
-            addUser.setInt(5, user.getBalance());
-            addUser.setBoolean(6, user.getIs_Active());
-            addUser.setString(7, user.getPurchased());
+            addUser.setString(4, user.getEmail());
+            addUser.setInt(5, user.getRole_ID());
+            addUser.setString(6, user.getPassword());
+            addUser.setInt(7, user.getBalance());
+            addUser.setBoolean(8, user.getIs_Active());
+            addUser.setString(9, user.getPurchased());
             addUser.executeUpdate();
             addUser.close();
             connection.close();
