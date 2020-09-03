@@ -9,8 +9,9 @@ public class Quest {
     private String description;
     private boolean is_Done;
     private boolean evaluation;
+    private boolean is_Basic;
 
-    public Quest(int quest_ID, String name, int reward, boolean is_Active, String description, boolean is_Done, boolean evaluation) {
+    public Quest(int quest_ID, String name, int reward, boolean is_Active, String description, boolean is_Done, boolean evaluation, boolean is_Basic) {
         this.quest_ID = quest_ID;
         this.quest_Name = name;
         this.reward = reward;
@@ -18,6 +19,7 @@ public class Quest {
         this.description = description;
         this.is_Done = is_Done;
         this.evaluation = evaluation;
+        this.is_Basic = is_Basic;
     }
 
     public int getQuest_ID() {
@@ -47,6 +49,10 @@ public class Quest {
     public boolean getEvaluation() {
         return evaluation;
     }
+    
+    public boolean getIs_Basic() {
+        return is_Basic;
+    }
 
     public void setName(String name) {
         this.quest_Name = name;
@@ -66,6 +72,10 @@ public class Quest {
 
     public void setIs_Done(boolean is_Done) {
         this.is_Done = is_Done;
+    }
+
+    public void setIs_Basic(boolean is_Basic) {
+        this.is_Basic = is_Basic;
     }
 
     public void setEvaluation(boolean evaluation) {

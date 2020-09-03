@@ -110,7 +110,7 @@ public class MenuHandler {
     private void initializeMentorMenu(User user) {
         mentorMenu = new HashMap<>();
         mentorMenu.put(1, user::createNewCodecooler);
-//        mentorMenu.put(2, user::addNewQuest);
+        mentorMenu.put(2, user::createNewQuest);
 //        mentorMenu.put(3, user::addNewArtifact);
 //        mentorMenu.put(4, user::updateQuest);
 //        mentorMenu.put(5, user::updateArtifact);

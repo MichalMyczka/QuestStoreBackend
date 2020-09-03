@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestDao extends Dao {
+
     public List<Quest> getQuests() {
         List<Quest> quests = new ArrayList<>();
         connect();
         try {
-            ResultSet results = statement.executeQuery("SELECT * FROM Quests;");
+            ResultSet results = statement.executeQuery("SELECT * FROM public.\"Quests\";");
             while (results.next()) {
                 quests.add(createQuest(results));
             }
@@ -34,13 +35,14 @@ public class QuestDao extends Dao {
         String description = results.getString("Description");
         boolean is_Done = results.getBoolean("Is_Done");
         boolean evaluation = results.getBoolean("Evaluation");
-        return new Quest(quest_id, name, reward, is_Active, description, is_Done, evaluation);
+        boolean is_Basic = results.getBoolean("Is_Basic");
+        return new Quest(quest_id, name, reward, is_Active, description, is_Done, evaluation, is_Basic);
     }
 
-    public void addNewQuest(Quest quest) {
+    public void addQuest(Quest quest) {
         connect();
         PreparedStatement addNewQuest;
-        String sql = "INSERT INTO Quests (Quest_Name, Reward, Is_Active, Description, Is_Done, Evaluation) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO public.\"Quests\" (\"Quest_Name\", \"Reward\", \"Is_Active\", \"Description\", \"Is_Done\", \"Evaluation\", \"Is_Basic\") VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             addNewQuest = connection.prepareStatement(sql);
             addNewQuest.setString(1, quest.getQuest_Name());
@@ -49,6 +51,7 @@ public class QuestDao extends Dao {
             addNewQuest.setString(4, quest.getDescription());
             addNewQuest.setBoolean(5, quest.getIs_Done());
             addNewQuest.setBoolean(6, quest.getEvaluation());
+            addNewQuest.setBoolean(7, quest.getIs_Basic());
             addNewQuest.executeUpdate();
             addNewQuest.close();
         } catch (SQLException e) {
