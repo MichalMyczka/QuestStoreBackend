@@ -73,9 +73,11 @@ public class MenuHandler {
             case 2:
                 initializeMentorMenu(user);
                 mentorPanel();
+                break;
             case 3:
                 initializeCreepMenu(user);
                 creepPanel();
+                break;
         }
     }
 
@@ -99,6 +101,7 @@ public class MenuHandler {
         while (isLogin){
             ui.displayCreepMenu();
             int userChoice = io.gatherIntInput("\nEnter a number: ",1,6);
+            creepMenu.get(userChoice).run();
         }
     }
 
