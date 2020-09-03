@@ -17,9 +17,9 @@ public class User {
     private String password;
     private int balance;
     private boolean is_Active;
-    private int purchased;
+    private String purchased;
 
-    public User(int user_ID, String user_Name, String user_Surname, int phone, String email, int role_ID, String password, int balance, boolean is_Active, int purchased) {
+    public User(int user_ID, String user_Name, String user_Surname, int phone, String email, int role_ID, String password, int balance, boolean is_Active, String purchased) {
         this.user_ID = user_ID;
         this.user_Name = user_Name;
         this.user_Surname = user_Surname;
@@ -68,7 +68,7 @@ public class User {
         return is_Active;
     }
 
-    public int getPurchased() {
+    public String getPurchased() {
         return purchased;
     }
 
@@ -104,7 +104,7 @@ public class User {
         this.is_Active = is_Active;
     }
 
-    public void setPurchased(int purchased) {
+    public void setPurchased(String purchased) {
         this.purchased = purchased;
     }
 }
