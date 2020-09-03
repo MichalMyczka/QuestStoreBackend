@@ -9,8 +9,8 @@
         <module name="QS_SQL" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="QS_SQL" target="" />
+    <bytecodeTargetLevel target="11">
+      <module name="QS_SQL" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

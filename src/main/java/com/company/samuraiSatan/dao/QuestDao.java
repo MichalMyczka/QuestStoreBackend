@@ -1,13 +1,11 @@
 package com.company.samuraiSatan.dao;
 
-import com.company.samuraiSatan.dao.QuestDao;
 import com.company.samuraiSatan.models.Quest;
 import com.jakewharton.fliptables.FlipTableConverters;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 public class QuestDao extends Dao {
     public List<Quest> getQuests() {
