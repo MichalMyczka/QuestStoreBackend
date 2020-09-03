@@ -67,15 +67,15 @@ public class MenuHandler {
         isLogin = true;
         switch (user.getRole_ID()) {
             case 1:
-                initializeCreepMenu(user);
-                creepPanel();
+                initializeStudentMenu(user);
+                studentPanel();
                 break;
             case 2:
                 initializeMentorMenu(user);
                 mentorPanel();
             case 3:
-                initializeStudentMenu(user);
-                studentPanel();
+                initializeCreepMenu(user);
+                creepPanel();
         }
     }
 

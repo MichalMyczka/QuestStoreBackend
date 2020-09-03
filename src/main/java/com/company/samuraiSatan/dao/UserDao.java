@@ -45,6 +45,7 @@ public class UserDao extends Dao {
             statement.setString(1, email);
             statement.setString(2, password);
             ResultSet results = statement.executeQuery();
+            results.next();
             List<User> users = getUsers();
             int indexDifference = 1;
             System.out.println(indexDifference);
