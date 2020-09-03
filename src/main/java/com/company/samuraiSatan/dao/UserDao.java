@@ -1,6 +1,8 @@
 package com.company.samuraiSatan.dao;
 
 import com.company.samuraiSatan.models.User;
+import com.jakewharton.fliptables.FlipTableConverters;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -81,5 +83,20 @@ public class UserDao extends Dao {
             e.printStackTrace();
         }
     }
+
+//----------------------------------------------------------------------------------------------------------------------
+public void showAllMentors() {
+    String sql = "SELECT * FROM Users WHERE Role_ID =2";
+    connect();
+    try {
+        ResultSet rs = statement.executeQuery(sql);
+        System.out.println(FlipTableConverters.fromResultSet(rs));
+        rs.close();
+        statement.close();
+        connection.close();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
 }
 

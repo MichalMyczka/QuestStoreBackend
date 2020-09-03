@@ -116,24 +116,36 @@ public class User {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-        public void createNewMentor() {
-            String name = io.gatherInput("Enter user name: ");
-            String surname = io.gatherInput("Enter user surname: ");
-            String password = io.gatherInput("Enter user password: ");
-            int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
-            String email = io.gatherInput("Enter user email: ");
-            int role = 2;
-            int balance = 0;
-            boolean is_Active = true;
-            String purchased = null;
-            try {
-                User user = new User(0, name, surname, phone, email, role, password, balance, is_Active, purchased);
-                userDao.addUser(user);
-                io.gatherEmptyInput("Account successfully created!\nPress any ket to back to main menu");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public void createNewMentor() {
+        String name = io.gatherInput("Enter user name: ");
+        String surname = io.gatherInput("Enter user surname: ");
+        String password = io.gatherInput("Enter user password: ");
+        int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
+        String email = io.gatherInput("Enter user email: ");
+        int role = 2;
+        int balance = 0;
+        boolean is_Active = true;
+        String purchased = null;
+        try {
+            User user = new User(0, name, surname, phone, email, role, password, balance, is_Active, purchased);
+            userDao.addUser(user);
+            io.gatherEmptyInput("Account successfully created!\nPress any ket to back to main menu");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    public void editMentorsProfile() {
+        System.out.println("Editing mentor's profile");
+        userDao.showAllMentors();
+        List<User> users = userDao.getUsers();
+        int id = io.gatherIntInput("Enter ID of Mentor to change his profile: ",1, userDao.getUsers().size()-1);
+        User user = users.get(id);
+        String email = io.gatherInput("Enter new email of Mentor: ");
+        user.setEmail(email);
+        int classs = io.gatherIntInput("Enter new ID of class to assign Mentor: ",1)
+    }
+
 
     //-------------------------------------------------------------------------
 
