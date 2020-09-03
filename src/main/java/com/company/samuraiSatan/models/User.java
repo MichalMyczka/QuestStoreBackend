@@ -112,13 +112,34 @@ public class User {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    public void createNewUser() {
+        public void createNewMentor() {
+            String name = io.gatherInput("Enter user name: ");
+            String surname = io.gatherInput("Enter user surname: ");
+            String password = io.gatherInput("Enter user password: ");
+            int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
+            String email = io.gatherInput("Enter user email: ");
+            int role = 2;
+            int balance = 0;
+            boolean is_Active = true;
+            String purchased = null;
+            try {
+                User user = new User(0, name, surname, phone, email, role, password, balance, is_Active, purchased);
+                userDao.addUser(user);
+                io.gatherEmptyInput("Account successfully created!\nPress any ket to back to main menu");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
+
+    //-------------------------------------------------------------------------
+
+    public void createNewCodecooler() {
         String name = io.gatherInput("Enter user name: ");
         String surname = io.gatherInput("Enter user surname: ");
         String password = io.gatherInput("Enter user password: ");
         int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
         String email = io.gatherInput("Enter user email: ");
-        int role = 2;
+        int role = 1;
         int balance = 0;
         boolean is_Active = true;
         String purchased = null;
@@ -129,5 +150,10 @@ public class User {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+
+
 }
-}
+
