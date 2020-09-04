@@ -1,5 +1,6 @@
 package com.company.samuraiSatan.dao;
 
+import com.company.samuraiSatan.models.Quest;
 import com.company.samuraiSatan.models.User;
 import com.jakewharton.fliptables.FlipTableConverters;
 
@@ -16,7 +17,7 @@ public class UserDao extends Dao {
         List<User> users = new ArrayList<>();
         connect();
         try {
-            ResultSet results = statement.executeQuery("SELECT * FROM public.\"Users\";");
+            ResultSet results = statement.executeQuery("SELECT * FROM public.\"Users\" ORDER BY \"User_ID\"");
             while (results.next()) {
                 users.add(createUser(results));
             }
@@ -43,7 +44,7 @@ public class UserDao extends Dao {
     public User getUser(String email, String password) {
         connect();
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM public.\"Users\" WHERE public.\"Users\".\"Email\" = ? AND public.\"Users\".\"Password\" = ?;");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM public.\"Users\" WHERE public.\"Users\".\"Email\" = ? AND public.\"Users\".\"Password\" = ? ORDER BY \"User_ID\"");
             statement.setString(1, email);
             statement.setString(2, password);
             ResultSet results = statement.executeQuery();
@@ -85,12 +86,13 @@ public class UserDao extends Dao {
     }
 
 //----------------------------------------------------------------------------------------------------------------------
+
 public void showAllMentors() {
-    String sql = "SELECT * FROM Users WHERE Role_ID =2";
+    String sql = "SELECT * FROM public.\"Users\" WHERE \"Role_ID\" = 2 ORDER BY \"User_ID\"";
     connect();
     try {
         ResultSet rs = statement.executeQuery(sql);
-        System.out.println(FlipTableConverters.fromResultSet(rs));
+//        System.out.println(FlipTableConverters.fromResultSet(rs));
         rs.close();
         statement.close();
         connection.close();
@@ -98,5 +100,22 @@ public void showAllMentors() {
         System.out.println(e.getMessage());
     }
 }
+
+//    public void updateMentor(User user) {
+//        PreparedStatement editMentor;
+//        connect();
+//        String sql = "UPDATE public.\"Users\" SET \"Email\" = ?  WHERE \"Role_ID\" = ?";
+//        try {
+//            editMentor = connection.prepareStatement(sql);
+//            editMentor.setString(1, user.getEmail());
+//            editMentor.setInt(2, user.getRole_ID());
+//            editMentor.executeUpdate();
+//            editMentor.close();
+//            connection.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
 }
 

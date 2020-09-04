@@ -90,8 +90,8 @@ public class MenuHandler {
     private void initializeCreepMenu(User user) {
         creepMenu = new HashMap<>();
         creepMenu.put(1, user::createNewMentor);
-//        creepMenu.put(2, user::createNewClass);
-//        creepMenu.put(3, user::editMentorProfile);
+        creepMenu.put(2, user::createNewClass);
+        creepMenu.put(3, user::editMentorsProfile);
 //        creepMenu.put(4, user::showMentorProfile);
 //        creepMenu.put(5, user::createNewLevelOfExperience);
         creepMenu.put(6, this::isLogin);

@@ -30,8 +30,5 @@ public class Class {
         this.class_Name = class_Name;
     }
 
-    public void createNewClass() {
-        System.out.println("Adding new class");
-        classDao.addClass();
-    }
+
 }

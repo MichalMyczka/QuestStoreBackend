@@ -2,6 +2,7 @@ package com.company.samuraiSatan.models;
 
 import com.company.samuraiSatan.IO;
 import com.company.samuraiSatan.dao.ArtifactDao;
+import com.company.samuraiSatan.dao.ClassDao;
 import com.company.samuraiSatan.dao.QuestDao;
 import com.jakewharton.fliptables.FlipTable;
 import com.company.samuraiSatan.dao.UserDao;
@@ -24,6 +25,7 @@ public class User {
     private final UserDao userDao = new UserDao();
     private final QuestDao questDao = new QuestDao();
     private final ArtifactDao artifactDao = new ArtifactDao();
+    private final ClassDao classDao = new ClassDao();
 
     public User(int user_ID, String user_Name, String user_Surname, int phone, String email, int role_ID, String password, int balance, boolean is_Active, String purchased) {
         this.user_ID = user_ID;
@@ -135,15 +137,28 @@ public class User {
         }
     }
 
-    public void editMentorsProfile() {
-        System.out.println("Editing mentor's profile");
-        userDao.showAllMentors();
-        List<User> users = userDao.getUsers();
-        int id = io.gatherIntInput("Enter ID of Mentor to change his profile: ",1, userDao.getUsers().size()-1);
-        User user = users.get(id);
-        String email = io.gatherInput("Enter new email of Mentor: ");
-        user.setEmail(email);
-        int classs = io.gatherIntInput("Enter new ID of class to assign Mentor: ",1)
+//    public void editMentorsProfile() {
+//        System.out.println("Editing mentor's profile");
+//        userDao.showAllMentors();
+//        List<User> users = userDao.getUsers();
+//        int id = io.gatherIntInput("Enter ID of Mentor to change his profile: ",1, userDao.getUsers().size());
+//        User user = users.get(id-1);
+//        String email = io.gatherInput("Enter new email of Mentor: ");
+//        user.setEmail(email);
+//        int classs = io.gatherIntInput("Enter new ID of class to assign Mentor: ",1)
+//        userDao.updateMentor(user);
+//    }
+
+    public void createNewClass() {
+        System.out.println("Adding new class");
+        String name = io.gatherInput("Enter class name: ");
+        try {
+            Class classs = new Class(0, name);
+            classDao.addClass(classs);
+            io.gatherEmptyInput("Class successfully created!\nPress any ket to back to main menu");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
