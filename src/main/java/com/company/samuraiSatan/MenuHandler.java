@@ -91,7 +91,7 @@ public class MenuHandler {
         creepMenu = new HashMap<>();
         creepMenu.put(1, user::createNewMentor);
         creepMenu.put(2, user::createNewClass);
-        creepMenu.put(3, user::editMentorsProfile);
+//        creepMenu.put(3, user::editMentorsProfile);
 //        creepMenu.put(4, user::showMentorProfile);
 //        creepMenu.put(5, user::createNewLevelOfExperience);
         creepMenu.put(6, this::isLogin);
@@ -113,7 +113,7 @@ public class MenuHandler {
         mentorMenu.put(2, user::createNewQuest);
         mentorMenu.put(3, user::createNewArtifact);
         mentorMenu.put(4, this::updateQuestData);
-//        mentorMenu.put(5, user::updateArtifact);
+        mentorMenu.put(5, this::updateArtifactData);
 //        mentorMenu.put(6, user::markQuestAsDone);
 //        mentorMenu.put(7, user::showStudentWallet);
         mentorMenu.put(8, this::isLogin);
@@ -140,6 +140,21 @@ public class MenuHandler {
         String description = io.gatherInput("Enter new description of the quest: ");
         quest.setDescription(description);
         questsDao.updateQuest(quest);
+    }
+
+    private void updateArtifactData() {
+        System.out.println("Editing Artifact");
+        artifactsDao.showAllArtifacts();
+        List<Artifact> artifacts = artifactsDao.getArtifacts();
+        int id = io.gatherIntInput("Enter ID of artifact to change: ",1, questsDao.getQuests().size());
+        Artifact artifact = artifacts.get(id-1);
+        String name = io.gatherInput("Enter new name of the artifact: ");
+        artifact.setArtifact_Name(name);
+        int cost = io.gatherIntInput("Enter new reward of the quest: ", (int) 1, 99999);
+        artifact.setCost(cost);
+        String description = io.gatherInput("Enter new description of the artifact: ");
+        artifact.setDescription(description);
+        artifactsDao.updateArtifact(artifact);
     }
 
 //----------------------------------------------------------------------------------------------------------------------

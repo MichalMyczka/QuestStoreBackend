@@ -2,6 +2,7 @@ package com.company.samuraiSatan.dao;
 
 import com.company.samuraiSatan.models.Artifact;
 import com.company.samuraiSatan.models.Quest;
+import com.jakewharton.fliptables.FlipTableConverters;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -14,7 +15,7 @@ public class ArtifactDao extends Dao {
         List<Artifact> artifacts = new ArrayList<>();
         connect();
         try {
-            ResultSet results = statement.executeQuery("SELECT * FROM public.\"Artifacts\";");
+            ResultSet results = statement.executeQuery("SELECT * FROM public.\"Artifacts\" ORDER BY \"Artifact_ID\"");
             while (results.next()) {
                 artifacts.add(createArtifact(results));
             }
@@ -54,6 +55,38 @@ public class ArtifactDao extends Dao {
             addNewArtifact.setBoolean(7, artifact.getIs_Used());
             addNewArtifact.executeUpdate();
             addNewArtifact.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showAllArtifacts() {
+        String sql = "SELECT * FROM public.\"Artifacts\" ORDER BY \"Artifact_ID\"";
+        connect();
+        try {
+            ResultSet rs = statement.executeQuery(sql);
+            System.out.println(FlipTableConverters.fromResultSet(rs));
+            rs.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateArtifact(Artifact artifact) {
+        PreparedStatement editArtifact;
+        connect();
+        String sql = "UPDATE public.\"Artifacts\" SET \"Artifact_Name\" = ?, \"Cost\" = ?, \"Description\" = ? WHERE \"Artifact_ID\" = ?";
+        try {
+            editArtifact = connection.prepareStatement(sql);
+            editArtifact.setString(1, artifact.getArtifact_Name());
+            editArtifact.setInt(2, artifact.getCost());
+            editArtifact.setString(3, artifact.getDescription());
+            editArtifact.setInt(4, artifact.getArtifact_ID());
+            editArtifact.executeUpdate();
+            editArtifact.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

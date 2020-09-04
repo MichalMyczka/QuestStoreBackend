@@ -101,21 +101,21 @@ public void showAllMentors() {
     }
 }
 
-//    public void updateMentor(User user) {
-//        PreparedStatement editMentor;
-//        connect();
-//        String sql = "UPDATE public.\"Users\" SET \"Email\" = ?  WHERE \"Role_ID\" = ?";
-//        try {
-//            editMentor = connection.prepareStatement(sql);
-//            editMentor.setString(1, user.getEmail());
-//            editMentor.setInt(2, user.getRole_ID());
-//            editMentor.executeUpdate();
-//            editMentor.close();
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void updateMentor(User user) {
+        PreparedStatement editMentor;
+        connect();
+        String sql = "UPDATE public.\"Users\" SET \"Email\" = ?  WHERE \"Role_ID\" = ?";
+        try {
+            editMentor = connection.prepareStatement(sql);
+            editMentor.setString(1, user.getEmail());
+            editMentor.setInt(2, user.getRole_ID());
+            editMentor.executeUpdate();
+            editMentor.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 
