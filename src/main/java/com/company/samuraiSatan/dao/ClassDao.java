@@ -29,7 +29,7 @@ public class ClassDao extends Dao {
 
     private Class createClass(ResultSet results) throws SQLException {
         int class_ID = results.getInt("Class_ID");
-        String class_Name = results.getString("Class_Name");
+        String class_Name = results.getString("ClassName");
         return new Class(class_ID, class_Name);
     }
 

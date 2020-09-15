@@ -15,7 +15,7 @@ public class User {
     private String user_Name;
     private String user_Surname;
     private String email;
-    private int phone;
+    private Integer phone;
     private String password;
     private int role_ID;
     private boolean is_Active;
@@ -95,7 +95,7 @@ public class User {
         this.user_Surname = user_Surname;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 
@@ -177,7 +177,7 @@ public class User {
         String name = io.gatherInput("Enter user name: ");
         String surname = io.gatherInput("Enter user surname: ");
         String password = io.gatherInput("Enter user password: ");
-        int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
+        Integer phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
         String email = io.gatherInput("Enter user email: ");
         int role = 1;
         int totalBalance = 0;

@@ -32,7 +32,7 @@ public class UserDao extends Dao {
         String user_Name = results.getString("Name");
         String user_Surname = results.getString("Surname");
         String email = results.getString("Email");
-        int phone = results.getInt("Phone");
+        Integer phone = results.getInt("Phone");
         String password = results.getString("Password");
         int role_ID = results.getInt("Role_ID");
         int totalBalance = results.getInt("TotalBalance");
