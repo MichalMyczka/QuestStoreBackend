@@ -31,12 +31,10 @@ public class QuestDao extends Dao {
 
     public Quest createQuest(ResultSet results) throws SQLException {
         int quest_id = results.getInt("Quest_ID");
-        String name = results.getString("Quest_Name");
+        String name = results.getString("QuestName");
         int reward = results.getInt("Reward");
         boolean is_Active = results.getBoolean("Is_Active");
         String description = results.getString("Description");
-        boolean is_Done = results.getBoolean("Is_Done");
-        boolean evaluation = results.getBoolean("Evaluation");
         boolean is_Basic = results.getBoolean("Is_Basic");
         return new Quest(quest_id, name, reward, is_Active, description, is_Basic);
     }

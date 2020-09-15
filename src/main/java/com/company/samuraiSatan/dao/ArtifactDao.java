@@ -30,7 +30,7 @@ public class ArtifactDao extends Dao {
 
     public Artifact createArtifact(ResultSet results) throws SQLException {
         int artifact_ID = results.getInt("Artifact_ID");
-        String artifact_Name = results.getString("Artifact_Name");
+        String artifact_Name = results.getString("ArtifactName");
         int cost = results.getInt("Cost");
         boolean is_Active = results.getBoolean("Is_Active");
         String description = results.getString("Description");
