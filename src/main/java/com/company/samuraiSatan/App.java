@@ -1,9 +1,6 @@
 package com.company.samuraiSatan;
 
-//import com.codecool.controller.LoginHandler;
-//import com.codecool.controller.RegisterHandler;
-//import com.codecool.controller.TemplateHandler;
-//import com.codecool.controller.UserController;
+import com.company.samuraiSatan.controller.LoginHandler;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;

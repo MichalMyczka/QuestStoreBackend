@@ -1,0 +1,233 @@
+body{
+    background: var(--siteBackgroundColor);
+    color: var(--textColor);
+    cursor: url('../images/cursor3.cur'), default;
+}
+.logo h1{
+    color: var(--logoColor);
+    float: top;
+    text-align: center;
+    font-size: 36px;
+}
+.bottomLogo{
+    margin-left: 25%;
+}
+.menu{
+    background: var(--menuBackgroundColor);
+    display: inline-block;
+    float: left;
+    width: 13%;
+    height: 45%;
+    text-align: center;
+    border-radius: 10px;
+}
+.menuOptions {
+    padding: 1em;
+}
+.loggedAs{
+    background-color: var(--innerMenuBackgroundColor);
+    border-radius: 7%;
+    color: var(--loggedAsTextColor);
+    display: inline-block;
+    text-align: center;
+    height: 15%;
+    font-size: 15px;
+    margin: 1em;
+}
+.searchBar{
+    background: var(--menuBackgroundColor);
+    margin-left: 31.5%;
+    text-align: left;
+    width: 30%;
+    height: 4%;
+    padding-bottom: 0.001em;
+    padding-top: 0.001em;
+}
+.menuBackground{
+    background: var(--menuBackgroundColor);
+    margin-left: 31.5%;
+    margin-top: 1%;
+    text-align: left;
+    width: 50%;
+    border-radius: 40px;
+    padding-bottom: 0.005em;
+}
+.innerContent{
+    background-color: var(--innerMenuBackgroundColor);
+    border-radius: 10px;
+    width: fit-content;
+    height: 7%;
+    text-align: left;
+    margin: 4%;
+    padding: 1%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.bottomButton{
+    background: var(--menuBackgroundColor);
+    margin-left: 64.5%;
+    margin-top: 1%;
+    text-align: center;
+    width: 17%;
+    height: 5%;
+}
+.innerBottomButton {
+    background-color: var(--innerMenuBackgroundColor);
+    width: 85%;
+    height: 80%;
+    border-radius: 10px;
+    margin: 3%;
+    display: inline-block;
+}
+#wrapper {
+    text-align: center;
+}
+#logForms {
+    background: var(--menuBackgroundColor);
+    width: 15%;
+    height: 15%;
+    border-radius: 20px;
+    display: inline-block;
+}
+.button{
+    background-color: var(--buttonBackgroundColor);
+    border: none;
+    color: var(--textColor);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0.5em 0;
+    cursor: pointer;
+    border-radius: 2em;
+    width: 100%;
+    padding: 1em;
+    box-sizing: border-box;
+}
+.buttonLogout{
+    background-color: var(--logoutButtonColor);
+    border: none;
+    color: var(--textColor);
+    padding: 10%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50px;
+    width: 80%;
+    margin-top: 40%;
+    margin-bottom: 5%;
+}
+.content > h2 {
+    padding: 1em 0;
+}
+.button:hover {
+    background: var(--gradientButton);
+    color: white;
+    box-shadow: 3px 3px 31px 3px rgba(111,220,247,1);
+}
+.buttonLogout:hover{
+    background: var(--gradientLogout);
+    color: white;
+    box-shadow: 3px 3px 31px 3px rgba(111,220,247,1);
+}
+.button[type='submit'] {
+    position: absolute;
+    width: 300px;
+    right: 350px;
+}
+@keyframes animation {
+    0%   { left:0; top:0;}
+    25%  { left:200px; top:0;}
+    50%  { left:0; right:200px;}
+    75%  { left:200px; top:0;}
+    100% { left:0; top:0;}
+}
+@keyframes colors {
+    0%   {color: violet;}
+    25%  {color: blue;}
+    50%  {color: #A8DADC;}
+    100% {color: violet;}
+}
+h2{
+    animation: colors 4s infinite;
+}
+.animation{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation-name: animation;
+    animation-duration: 4s;
+    animation-delay: 0.5s;
+    animation-iteration-count: infinite;
+}
+.square{
+    margin: 1.9em;
+    float: left;
+}
+.artifacts{
+    float: left;
+    background: var(--menuBackgroundColor);
+    border-radius: 10px;
+    margin-left: 13%;
+}
+.infoContainer{
+    background: var(--menuBackgroundColor);
+    margin-left: 31.5%;
+    margin-top: 3%;
+    width: 50%;
+    border-radius: 40px;
+    padding-bottom: 0.005em;
+    height: 50%;
+    text-align: center;
+}
+.totalEarnings{
+    background-color: var(--innerMenuBackgroundColor);
+    border-radius: 10px;
+    width: fit-content;
+    height: 7%;
+    padding: 1%;
+    text-align: center;
+    margin: 4% 4% 4% 32%;
+    font-size: 150%;
+}
+.boughtArtifacts{
+    background-color: var(--innerMenuBackgroundColor);
+    border-radius: 10px;
+    width: fit-content;
+    height: 7%;
+    padding: 1%;
+    margin: 3% 4% 5% 35%;
+    text-align: center;
+    font-size: 150%;
+}
+.yourCoins{
+    border-radius: 60px;
+    background: var(--menuBackgroundColor);
+    color: var(--buttonBackgroundColor);
+    padding: 20px;
+    border: none;
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 130%;
+}
+.coinsContainer{
+    float: right;
+    margin-top: 1.8%;
+    margin-right: 5%;
+}
+.experience{
+    background-color: var(--innerMenuBackgroundColor);
+    border-radius: 10px;
+    width: fit-content;
+    height: 7%;
+    padding: 1%;
+    margin: 3% 4% 0 33%;
+    text-align: center;
+    font-size: 150%;
+}
+#exp{
+
+}

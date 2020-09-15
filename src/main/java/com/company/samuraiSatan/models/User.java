@@ -146,17 +146,24 @@ public class User {
         }
     }
 
-//    public void editMentorsProfile() {
-//        System.out.println("Editing mentor's profile");
-//        userDao.showAllMentors();
-//        List<User> users = userDao.getUsers();
-//        int id = io.gatherIntInput("Enter ID of Mentor to change his profile: ",1, userDao.getUsers().size());
-//        User user = users.get(id-1);
-//        String email = io.gatherInput("Enter new email of Mentor: ");
-//        user.setEmail(email);
-//        int classs = io.gatherIntInput("Enter new ID of class to assign Mentor: ",1)
-//        userDao.updateMentor(user);
-//    }
+    public void editMentorsProfile() {
+        System.out.println("Editing mentor's profile");
+        userDao.showAllMentors();
+        List<User> users = userDao.getUsers();
+        int id = io.gatherIntInput("Enter ID of Mentor to change his profile: ",1, userDao.getUsers().size());
+        User user = users.get(id-1);
+        String name = io.gatherInput("Enter new name of Mentor: ");
+        user.setUser_Name(name);
+        String surname = io.gatherInput("Enter new surname of Mentor: ");
+        user.setUser_Surname(surname);
+        String email = io.gatherInput("Enter new email of Mentor: ");
+        user.setEmail(email);
+        int phone = io.gatherIntInput("Enter new phone of Mentor: ",1, Integer.MAX_VALUE);
+        user.setPhone(phone);
+        int classs = io.gatherIntInput("Enter new ID of class to assign Mentor: ",1, Integer.MAX_VALUE);
+        user.setUserClass_ID(classs);
+        userDao.updateMentor(user);
+    }
 
     public void createNewClass() {
         System.out.println("Adding new class");
@@ -177,7 +184,7 @@ public class User {
         String name = io.gatherInput("Enter user name: ");
         String surname = io.gatherInput("Enter user surname: ");
         String password = io.gatherInput("Enter user password: ");
-        Integer phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
+        int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
         String email = io.gatherInput("Enter user email: ");
         int role = 1;
         int totalBalance = 0;
@@ -198,8 +205,6 @@ public class User {
         int reward = io.gatherIntInput("Enter reward: ", 0, Integer.MAX_VALUE);
         String description = io.gatherInput("Enter quest description: ");
         boolean is_Active = true;
-        boolean is_Done = false;
-        boolean evaluation = false;
         boolean is_Basic = false;
         try {
             Quest quest = new Quest(0, name, reward, is_Active, description, is_Basic);
@@ -214,10 +219,8 @@ public class User {
         String name = io.gatherInput("Enter artifact name: ");
         int cost = io.gatherIntInput("Enter cost: ", 0, Integer.MAX_VALUE);
         String description = io.gatherInput("Enter Artifact description: ");
-        int collected = 0;
         boolean is_Active = true;
         boolean is_Solo = false;
-        boolean is_Used = false;
         try {
             Artifact artifact = new Artifact(0, name, cost, is_Active, description, is_Solo);
             artifactDao.addNewArtifact(artifact);
