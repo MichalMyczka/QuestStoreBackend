@@ -10,7 +10,7 @@ import java.util.HashMap;
  * http://www.iana.org/assignments/media-types/
  */
 public class MimeTypes {
-
+    public static final String MIME_CUR = "image/x-icon";
     public static final String MIME_APPLICATION_ANDREW_INSET  = "application/andrew-inset";
     public static final String MIME_APPLICATION_JSON      = "application/json";
     public static final String MIME_APPLICATION_ZIP       = "application/zip";
@@ -298,6 +298,7 @@ public class MimeTypes {
                 put1("dll", MIME_APPLICATION_OCTET_STREAM);
                 put1("class", MIME_APPLICATION_OCTET_STREAM);
                 put1("jar", MIME_APPLICATION_JAVA_ARCHIVE);
+                put1("cur", MIME_CUR);
             }};
     }
 }
