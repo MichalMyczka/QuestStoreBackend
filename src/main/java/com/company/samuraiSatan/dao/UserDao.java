@@ -66,7 +66,7 @@ public class UserDao extends Dao {
     public void addUser(User user) {
         connect();
         PreparedStatement addUser;
-        String sql = "INSERT INTO users (\"Name\", \"Surname\", \"Phone\", \"Email\", \"Role_ID\", \"Password\", \"TotalBalance\", \"Is_Active\", \"UserClass_ID\", \"ExperienceLvl_ID\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users (\"Name\", \"Surname\",\"Email\", \"Phone\",\"Password\", \"Role_ID\", \"Is_Active\", \"UserClass_ID\", \"ExperienceLvl_ID\", \"TotalBalance\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             addUser = connection.prepareStatement(sql);
             addUser.setString(1, user.getUser_Name());

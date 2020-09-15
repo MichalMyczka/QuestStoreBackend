@@ -129,14 +129,14 @@ public class User {
     public void createNewMentor() {
         String name = io.gatherInput("Enter user name: ");
         String surname = io.gatherInput("Enter user surname: ");
-        String password = io.gatherInput("Enter user password: ");
-        int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
         String email = io.gatherInput("Enter user email: ");
+        int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
+        String password = io.gatherInput("Enter user password: ");
         int role = 2;
-        int totalBalance = 0;
         boolean is_Active = true;
-        int userClass_ID = 1;
+        int userClass_ID = io.gatherIntInput("Enter user class ID: ",0, Integer.MAX_VALUE);
         int experienceLvl_ID = 1;
+        int totalBalance = 0;
         try {
             User user = new User(0, name, surname, email, phone, password, role, is_Active, userClass_ID, experienceLvl_ID, totalBalance);
             userDao.addUser(user);
