@@ -1,15 +1,14 @@
 package com.company.samuraiSatan.controller;
 
+import com.company.samuraiSatan.Static;
 import com.company.samuraiSatan.helpers.Parser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpCookie;
+import java.net.URI;
 import java.util.Collections;
 import java.util.Map;
 
@@ -29,27 +28,19 @@ public class LoginHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        String response = "";
-        try {
-            InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), "utf-8");
-            BufferedReader br = new BufferedReader(isr);
+        String response = readHtmlPage("html/loginPage.html");
+        // get file path from url
+        URI uri = exchange.getRequestURI();
+        System.out.println("looking for: " + uri.getPath());
+        String path = "." + uri.getPath();
+        exchange.sendResponseHeaders(200, response.length());
+    }
 
-            Map<String, String> data = Parser.parseFormData(br.readLine());
-            String email = data.get("email");
-            String password = data.get("password");
+    private String readHtmlPage(String path) throws IOException {
+        BufferedReader objReader = new BufferedReader(new FileReader("/resources/html/loginPage.html"));
 
-            //  TODO here we need to check if user with given password and email exist in database
-            //  In cookie we should set json with user token and role instead of email
-            HttpCookie cookie = new HttpCookie("user", email);
-            exchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
-
-            response = "User authenticated";
-            sendResponse(response, exchange, 200);
-        } catch (Exception e) {
-            e.printStackTrace();
-            response = e.getMessage();
-            sendResponse(response, exchange, 500);
-        }
+        String naszhtml = objReader.readLine();
+        String linia += naszhtml;
+        return
     }
 }
-

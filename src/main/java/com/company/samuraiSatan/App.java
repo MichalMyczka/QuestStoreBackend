@@ -11,7 +11,8 @@ public class App {
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
-        server.createContext("/QuestStore/html/loginPage.html", new LoginHandler());
+        server.createContext("/login", new LoginHandler());
+        server.createContext("/static", new Static());
 
         server.setExecutor(null);
         server.start();
