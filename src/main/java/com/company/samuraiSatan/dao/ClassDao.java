@@ -17,7 +17,7 @@ public class ClassDao extends Dao {
         List<Class> classes = new ArrayList<>();
         connect();
         try {
-            ResultSet results = statement.executeQuery("SELECT * FROM public.\"Classes\";");
+            ResultSet results = statement.executeQuery("SELECT * FROM classes;");
             while (results.next()) {
                 classes.add(createClass(results));
             }
@@ -36,7 +36,7 @@ public class ClassDao extends Dao {
     public void addClass(Class classs) {
         connect();
         PreparedStatement addClass;
-        String sql = "INSERT INTO public.\"Classes\" (\"Class_Name\") VALUES (?)";
+        String sql = "INSERT INTO classes (\"ClassName\") VALUES (?)";
         try {
             addClass = connection.prepareStatement(sql);
             addClass.setString(1, classs.getClass_Name());

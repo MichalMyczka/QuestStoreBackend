@@ -16,7 +16,7 @@ public class QuestDao extends Dao {
         List<Quest> quests = new ArrayList<>();
         connect();
         try {
-            ResultSet results = statement.executeQuery("SELECT * FROM public.\"Quests\" ORDER BY \"Quest_ID\";");
+            ResultSet results = statement.executeQuery("SELECT * FROM quests ORDER BY \"Quest_ID\";");
             while (results.next()) {
                 quests.add(createQuest(results));
             }
@@ -38,22 +38,20 @@ public class QuestDao extends Dao {
         boolean is_Done = results.getBoolean("Is_Done");
         boolean evaluation = results.getBoolean("Evaluation");
         boolean is_Basic = results.getBoolean("Is_Basic");
-        return new Quest(quest_id, name, reward, is_Active, description, is_Done, evaluation, is_Basic);
+        return new Quest(quest_id, name, reward, is_Active, description, is_Basic);
     }
 
     public void addQuest(Quest quest) {
         connect();
         PreparedStatement addNewQuest;
-        String sql = "INSERT INTO public.\"Quests\" (\"Quest_Name\", \"Reward\", \"Is_Active\", \"Description\", \"Is_Done\", \"Evaluation\", \"Is_Basic\") VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO quests (\"QuestName\", \"Reward\", \"Is_Active\", \"Description\", \"Is_Basic\") VALUES (?, ?, ?, ?, ?)";
         try {
             addNewQuest = connection.prepareStatement(sql);
             addNewQuest.setString(1, quest.getQuest_Name());
             addNewQuest.setInt(2, quest.getReward());
             addNewQuest.setBoolean(3, quest.isIs_Active());
             addNewQuest.setString(4, quest.getDescription());
-            addNewQuest.setBoolean(5, quest.getIs_Done());
-            addNewQuest.setBoolean(6, quest.getEvaluation());
-            addNewQuest.setBoolean(7, quest.getIs_Basic());
+            addNewQuest.setBoolean(5, quest.getIs_Basic());
             addNewQuest.executeUpdate();
             addNewQuest.close();
         } catch (SQLException e) {
@@ -62,7 +60,7 @@ public class QuestDao extends Dao {
     }
 
     public void showAllQuests() {
-        String sql = "SELECT * FROM public.\"Quests\" ORDER BY \"Quest_ID\"";
+        String sql = "SELECT * FROM quests ORDER BY \"Quest_ID\"";
         connect();
         try {
             ResultSet rs = statement.executeQuery(sql);
@@ -78,7 +76,7 @@ public class QuestDao extends Dao {
     public void updateQuest(Quest quest) {
         PreparedStatement editQuest;
         connect();
-        String sql = "UPDATE public.\"Quests\" SET \"Quest_Name\" = ?, \"Reward\" = ?, \"Description\" = ? WHERE \"Quest_ID\" = ?";
+        String sql = "UPDATE quests SET \"QuestName\" = ?, \"Reward\" = ?, \"Description\" = ? WHERE \"Quest_ID\" = ?";
         try {
             editQuest = connection.prepareStatement(sql);
             editQuest.setString(1, quest.getQuest_Name());
@@ -93,6 +91,19 @@ public class QuestDao extends Dao {
         }
     }
 
-
-
+    public void splitQuest(Quest quest) {
+        PreparedStatement splitQuest;
+        connect();
+        String sql = "UPDATE quests SET \"Is_Basic\" = ? WHERE \"Quest_ID\" = ?";
+        try {
+            splitQuest = connection.prepareStatement(sql);
+            splitQuest.setBoolean(1, quest.getIs_Basic());
+            splitQuest.setInt(2, quest.getQuest_ID());
+            splitQuest.executeUpdate();
+            splitQuest.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

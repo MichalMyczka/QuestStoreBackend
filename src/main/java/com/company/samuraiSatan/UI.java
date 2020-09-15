@@ -59,8 +59,8 @@ public class UI {
         mentorChoiceMap.put(3, "Add new artifact");
         mentorChoiceMap.put(4, "Update quests");
         mentorChoiceMap.put(5, "Update artifacts");
-        mentorChoiceMap.put(6, "Mark quest as done");
-        mentorChoiceMap.put(7, "Show Student's wallet");
+        mentorChoiceMap.put(6, "Split Quest To Categories");
+        mentorChoiceMap.put(7, "Split Artifact To Categories");
         mentorChoiceMap.put(8, "Logout");
         return mentorChoiceMap;
     }

@@ -14,30 +14,33 @@ public class User {
     private int user_ID;
     private String user_Name;
     private String user_Surname;
-    private int phone;
     private String email;
-    private int role_ID;
+    private int phone;
     private String password;
-    private int balance;
+    private int role_ID;
     private boolean is_Active;
-    private String purchased;
+    private int userClass_ID;
+    private int experienceLvl_ID;
+    private int totalBalance;
+
     private final IO io = new IO();
     private final UserDao userDao = new UserDao();
     private final QuestDao questDao = new QuestDao();
     private final ArtifactDao artifactDao = new ArtifactDao();
     private final ClassDao classDao = new ClassDao();
 
-    public User(int user_ID, String user_Name, String user_Surname, int phone, String email, int role_ID, String password, int balance, boolean is_Active, String purchased) {
+    public User(int user_ID, String user_Name, String user_Surname, String email, int phone, String password, int role_ID, boolean is_Active, int userClass_ID, int experienceLvl_ID, int totalBalance) {
         this.user_ID = user_ID;
         this.user_Name = user_Name;
         this.user_Surname = user_Surname;
-        this.phone = phone;
         this.email = email;
-        this.role_ID = role_ID;
+        this.phone = phone;
         this.password = password;
-        this.balance = balance;
+        this.role_ID = role_ID;
         this.is_Active = is_Active;
-        this.purchased = purchased;
+        this.userClass_ID = userClass_ID;
+        this.experienceLvl_ID = experienceLvl_ID;
+        this.totalBalance = totalBalance;
     }
 
     public int getUser_ID() {
@@ -68,16 +71,20 @@ public class User {
         return password;
     }
 
-    public int getBalance() {
-        return balance;
+    public int getTotalBalance() {
+        return totalBalance;
     }
 
     public boolean getIs_Active() {
         return is_Active;
     }
 
-    public String getPurchased() {
-        return purchased;
+    public int getUserClass_ID() {
+        return userClass_ID;
+    }
+
+    public int getExperienceLvl_ID() {
+        return experienceLvl_ID;
     }
 
     public void setUser_Name(String user_Name) {
@@ -104,17 +111,18 @@ public class User {
         this.password = password;
     }
 
-    public void setBalance(int balance) {
-        this.balance = balance;
+    public void setTotalBalance(int totalBalance) {
+        this.totalBalance = totalBalance;
     }
 
     public void setIs_Active(boolean is_Active) {
         this.is_Active = is_Active;
     }
 
-    public void setPurchased(String purchased) {
-        this.purchased = purchased;
-    }
+    public void setUserClass_ID(int userClass_ID){this.userClass_ID = userClass_ID; }
+
+    public void setExperienceLvl_ID(int experienceLvl_ID){this.experienceLvl_ID = experienceLvl_ID; }
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -125,11 +133,12 @@ public class User {
         int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
         String email = io.gatherInput("Enter user email: ");
         int role = 2;
-        int balance = 0;
+        int totalBalance = 0;
         boolean is_Active = true;
-        String purchased = null;
+        int userClass_ID = 1;
+        int experienceLvl_ID = 1;
         try {
-            User user = new User(0, name, surname, phone, email, role, password, balance, is_Active, purchased);
+            User user = new User(0, name, surname, email, phone, password, role, is_Active, userClass_ID, experienceLvl_ID, totalBalance);
             userDao.addUser(user);
             io.gatherEmptyInput("Account successfully created!\nPress any ket to back to main menu");
         } catch (Exception e) {
@@ -171,11 +180,12 @@ public class User {
         int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
         String email = io.gatherInput("Enter user email: ");
         int role = 1;
-        int balance = 0;
+        int totalBalance = 0;
         boolean is_Active = true;
-        String purchased = null;
+        int userClass_ID = 1;
+        int experienceLvl_ID = 1;
         try {
-            User user = new User(0, name, surname, phone, email, role, password, balance, is_Active, purchased);
+            User user = new User(0, name, surname, email, phone, password, role, is_Active, userClass_ID, experienceLvl_ID, totalBalance);
             userDao.addUser(user);
             io.gatherEmptyInput("Account successfully created!\nPress any ket to back to main menu");
         } catch (Exception e) {
@@ -192,7 +202,7 @@ public class User {
         boolean evaluation = false;
         boolean is_Basic = false;
         try {
-            Quest quest = new Quest(0, name, reward, is_Active, description, is_Done, evaluation, is_Basic);
+            Quest quest = new Quest(0, name, reward, is_Active, description, is_Basic);
             questDao.addQuest(quest);
             io.gatherEmptyInput("Quest successfully created!\nPress any ket to back to main menu");
         } catch (Exception e) {
@@ -209,7 +219,7 @@ public class User {
         boolean is_Solo = false;
         boolean is_Used = false;
         try {
-            Artifact artifact = new Artifact(0, name, cost, is_Active, description, is_Solo, collected, is_Used);
+            Artifact artifact = new Artifact(0, name, cost, is_Active, description, is_Solo);
             artifactDao.addNewArtifact(artifact);
             io.gatherEmptyInput("Artifact successfully created!\nPress any ket to back to main menu");
         } catch (Exception e) {

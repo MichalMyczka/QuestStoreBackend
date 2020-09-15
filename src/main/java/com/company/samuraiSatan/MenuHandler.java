@@ -114,6 +114,8 @@ public class MenuHandler {
         mentorMenu.put(3, user::createNewArtifact);
         mentorMenu.put(4, this::updateQuestData);
         mentorMenu.put(5, this::updateArtifactData);
+        mentorMenu.put(6, this::splitQuestType);
+        mentorMenu.put(7, this::splitArtifactType);
 //        mentorMenu.put(6, user::markQuestAsDone);
 //        mentorMenu.put(7, user::showStudentWallet);
         mentorMenu.put(8, this::isLogin);
@@ -140,6 +142,40 @@ public class MenuHandler {
         String description = io.gatherInput("Enter new description of the quest: ");
         quest.setDescription(description);
         questsDao.updateQuest(quest);
+    }
+
+    private void splitQuestType() {
+        System.out.println("Editing Quest");
+        questsDao.showAllQuests();
+        List<Quest> quests = questsDao.getQuests();
+        int id = io.gatherIntInput("Enter ID of quest to change: ",1, questsDao.getQuests().size());
+        Quest quest = quests.get(id-1);
+
+        int basic = io.gatherIntInput("Change quest type: (1 - basic/ 2 - extra) ", (int) 1, 2);
+        if (basic == 1) {
+            quest.setIs_Basic(true);
+        }
+        else {
+            quest.setIs_Basic(false);
+        }
+        questsDao.splitQuest(quest);
+    }
+
+    private void splitArtifactType() {
+        System.out.println("Editing Artifact");
+        artifactsDao.showAllArtifacts();
+        List<Artifact> artifacts = artifactsDao.getArtifacts();
+        int id = io.gatherIntInput("Enter ID of artifact to change: ",1, artifactsDao.getArtifacts().size());
+        Artifact artifact = artifacts.get(id-1);
+
+        int solo = io.gatherIntInput("Change artifact type: (1 - solo/ 2 - group) ", (int) 1, 2);
+        if (solo == 1) {
+            artifact.setIs_Solo(true);
+        }
+        else {
+            artifact.setIs_Solo(false);
+        }
+        artifactsDao.splitArtifact(artifact);
     }
 
     private void updateArtifactData() {
