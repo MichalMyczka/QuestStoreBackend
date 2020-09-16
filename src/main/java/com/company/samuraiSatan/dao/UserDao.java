@@ -59,8 +59,8 @@ public class UserDao extends Dao {
             return users.get(user_ID);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            throw new NoSuchElementException("There isn't user with specified data in database");
         }
-        throw new NoSuchElementException("There isn't user with specified data in database");
     }
 
     public void addUser(User user) {
