@@ -1,11 +1,9 @@
 package com.company.samuraiSatan.models;
 
 import com.company.samuraiSatan.IO;
-import com.company.samuraiSatan.dao.ArtifactDao;
-import com.company.samuraiSatan.dao.ClassDao;
-import com.company.samuraiSatan.dao.QuestDao;
+import com.company.samuraiSatan.dao.*;
 import com.jakewharton.fliptables.FlipTable;
-import com.company.samuraiSatan.dao.UserDao;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
@@ -28,6 +26,7 @@ public class User {
     private final QuestDao questDao = new QuestDao();
     private final ArtifactDao artifactDao = new ArtifactDao();
     private final ClassDao classDao = new ClassDao();
+    private final ExperienceDao experienceDao = new ExperienceDao();
 
     public User(int user_ID, String user_Name, String user_Surname, String email, int phone, String password, int role_ID, boolean is_Active, int userClass_ID, int experienceLvl_ID, int totalBalance) {
         this.user_ID = user_ID;
@@ -160,6 +159,8 @@ public class User {
         user.setEmail(email);
         int phone = io.gatherIntInput("Enter new phone of Mentor: ",1, Integer.MAX_VALUE);
         user.setPhone(phone);
+        String password = io.gatherInput("Enter new password of Mentor: ");
+        user.setPassword(password);
         int classs = io.gatherIntInput("Enter new ID of class to assign Mentor: ",1, Integer.MAX_VALUE);
         user.setUserClass_ID(classs);
         userDao.updateMentor(user);
@@ -172,6 +173,19 @@ public class User {
             Class classs = new Class(0, name);
             classDao.addClass(classs);
             io.gatherEmptyInput("Class successfully created!\nPress any ket to back to main menu");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createNewExperienceLvl() {
+        System.out.println("Adding new experience lvl");
+        String name = io.gatherInput("Enter experience lvl name: ");
+        int expNeeded = io.gatherIntInput("Enter experience needed", 0 , Integer.MAX_VALUE);
+        try {
+            ExperienceLvl experienceLvl = new ExperienceLvl(0, name, expNeeded);
+            experienceDao.addExperienceLvl(experienceLvl);
+            io.gatherEmptyInput("Experience Lvl successfully created!\nPress any ket to back to main menu");
         } catch (Exception e) {
             e.printStackTrace();
         }

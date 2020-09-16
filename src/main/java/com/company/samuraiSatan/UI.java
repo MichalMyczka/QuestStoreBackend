@@ -46,7 +46,7 @@ public class UI {
         creepChoiceMap.put(1, "Create Mentor account");
         creepChoiceMap.put(2, "Create class");
         creepChoiceMap.put(3, "Edit Mentor's profile");
-        creepChoiceMap.put(4, "Show Mentor's profile");
+        creepChoiceMap.put(4, "Create New Experience Lvl");
         creepChoiceMap.put(5, "Create new level of experience");
         creepChoiceMap.put(6, "Logout");
         return creepChoiceMap;

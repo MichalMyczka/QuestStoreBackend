@@ -1,5 +1,6 @@
 package com.company.samuraiSatan;
 
+import com.company.samuraiSatan.controller.CreepStartingPageHandler;
 import com.company.samuraiSatan.controller.LoginHandler;
 import com.sun.net.httpserver.HttpServer;
 
@@ -13,6 +14,7 @@ public class App {
 
         server.createContext("/login", new LoginHandler());
         server.createContext("/static", new Static());
+        server.createContext("/creepStarting", new CreepStartingPageHandler());
 
         server.setExecutor(null);
         server.start();
