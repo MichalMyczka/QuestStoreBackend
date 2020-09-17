@@ -12,7 +12,6 @@ import java.net.HttpCookie;
 import java.util.Map;
 
 public class AddArtifactHandler implements HttpHandler {
-//    ReadHtml readHtml = new ReadHtml();
     ArtifactDao artifactDao = new ArtifactDao();
     private ObjectMapper objectMapper = new ObjectMapper();
     @Override
