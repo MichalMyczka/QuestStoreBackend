@@ -2,6 +2,7 @@ package com.company.samuraiSatan;
 
 import com.company.samuraiSatan.controller.CreepStartingPageHandler;
 import com.company.samuraiSatan.controller.LoginHandler;
+import com.company.samuraiSatan.controller.mentorAddCodeCoolerHandler;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class App {
         server.createContext("/login", new LoginHandler());
         server.createContext("/static", new Static());
         server.createContext("/creepStarting", new CreepStartingPageHandler());
+        server.createContext("/mentorAddUser", new mentorAddCodeCoolerHandler());
 
         server.setExecutor(null);
         server.start();
