@@ -88,21 +88,21 @@ public class UserDao extends Dao {
         }
     }
 
-//----------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
 
-public void showAllMentors() {
-    String sql = "SELECT * FROM users WHERE \"Role_ID\" = 2 ORDER BY \"User_ID\"";
-    connect();
-    try {
-        ResultSet rs = statement.executeQuery(sql);
-//        System.out.println(FlipTableConverters.fromResultSet(rs));
-        rs.close();
-        statement.close();
-        connection.close();
-    } catch (SQLException e) {
-        System.out.println(e.getMessage());
+    public void showAllMentors() {
+        String sql = "SELECT * FROM users WHERE \"Role_ID\" = 2 ORDER BY \"User_ID\"";
+        connect();
+        try {
+            ResultSet rs = statement.executeQuery(sql);
+    //        System.out.println(FlipTableConverters.fromResultSet(rs));
+            rs.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
-}
 
     public void updateMentor(User user) {
         PreparedStatement editMentor;
@@ -125,5 +125,20 @@ public void showAllMentors() {
         }
     }
 
+    //----------------------------------------------------------------------------------------------------------------------
+
+    public void showCodecoolerExp() {
+        String sql = "SELECT \"User_ID\" ,\"Name\",\"Surname\",\"ExperienceLvl_ID\" FROM users WHERE \"Role_ID\" = 1";
+        connect();
+        try {
+            ResultSet rs = statement.executeQuery(sql);
+            System.out.println(FlipTableConverters.fromResultSet(rs));
+            rs.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
 

@@ -197,7 +197,7 @@ public class MenuHandler {
 //funkcje tutaj czy gdzies indziej???
     private void initializeStudentMenu(User user) {
         studentMenu = new HashMap<>();
-//        studentMenu.put(1, user::showMyWallet);
+        studentMenu.put(1, userDao::showCodecoolerExp);
 //        studentMenu.put(2, user::buyArtifact);
 //        studentMenu.put(3, user::showMyLevelOfExperience);
 //        studentMenu.put(4, user::showAvailableQuests);
@@ -209,6 +209,7 @@ public class MenuHandler {
         while (isLogin) {
             ui.displayStudentMenu();
             int userChoice = io.gatherIntInput("\nenter a number: ",1,6);
+            studentMenu.get(userChoice).run();
         }
     }
 
