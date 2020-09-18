@@ -1,9 +1,6 @@
 package com.company.samuraiSatan;
 
-import com.company.samuraiSatan.controller.LoginHandler;
-import com.company.samuraiSatan.controller.QuestAddHandler;
-import com.company.samuraiSatan.controller.AddArtifactHandler;
-import com.company.samuraiSatan.controller.QuestUpdateHandler;
+import com.company.samuraiSatan.controller.*;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -19,6 +16,7 @@ public class App {
         server.createContext("/addQuest", new QuestAddHandler());
         server.createContext("/mentorAddArtifact", new AddArtifactHandler());
         server.createContext("/updateQuest", new QuestUpdateHandler());
+        server.createContext("/updateArtifact", new UpdateArtifactHandler());
 
         server.setExecutor(null);
         server.start();
