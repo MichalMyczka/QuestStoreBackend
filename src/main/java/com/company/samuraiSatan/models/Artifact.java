@@ -6,64 +6,64 @@ import java.util.ArrayList;
 import com.company.samuraiSatan.dao.ArtifactDao;
 
 public class Artifact {
-    private int artifact_ID;
-    private String artifactName;
+    private int id;
+    private String name;
     private int cost;
-    private boolean is_Active;
+    private boolean isActive;
     private String description;
-    private boolean is_Solo;
+    private boolean isSolo;
 
-    public Artifact(int artifact_ID, String artifactName, int cost, boolean is_Active, String description, boolean is_Solo) {
-        this.artifact_ID = artifact_ID;
-        this.artifactName = artifactName;
+    public Artifact(int id, String name, int cost, boolean isActive, String description, boolean isSolo) {
+        this.id = id;
+        this.name = name;
         this.cost = cost;
-        this.is_Active = is_Active;
+        this.isActive = isActive;
         this.description = description;
-        this.is_Solo = is_Solo;
+        this.isSolo = isSolo;
     }
 
     public int getArtifact_ID() {
-        return artifact_ID;
+        return id;
     }
 
     public String getArtifact_Name() {
-        return artifactName;
+        return name;
     }
 
     public int getCost() {
         return cost;
     }
 
-    public boolean getIs_Active() {
-        return is_Active;
+    public boolean getActive() {
+        return isActive;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public boolean getIs_Solo() {
-        return is_Solo;
+    public boolean getSolo() {
+        return isSolo;
     }
 
     public void setArtifact_Name(String artifact_Name) {
-        this.artifactName = artifact_Name;
+        this.name = artifact_Name;
     }
 
     public void setCost(int cost) {
         this.cost = cost;
     }
 
-    public void setIs_Active(boolean is_Active) {
-        this.is_Active = is_Active;
+    public void setActive(boolean active) {
+        this.isActive = active;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setIs_Solo(boolean is_Solo) {
-        this.is_Solo = is_Solo;
+    public void setSolo(boolean solo) {
+        this.isSolo = solo;
     }
 
 }
