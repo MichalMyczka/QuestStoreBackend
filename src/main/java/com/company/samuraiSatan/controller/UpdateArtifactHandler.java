@@ -28,7 +28,7 @@ public class UpdateArtifactHandler implements HttpHandler {
                 List artifactList = artifactDao.getArtifacts();
 
                 String artifactJSON = objectMapper.writeValueAsString(artifactList);
-                HttpCookie cookie = new HttpCookie("artifactlist", artifactJSON);
+                HttpCookie cookie = new HttpCookie("artifactList", artifactJSON);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
                 HttpCommunication.sendResponse(artifactJSON, httpExchange, 200);
             }
@@ -40,7 +40,9 @@ public class UpdateArtifactHandler implements HttpHandler {
                 String artifactName = data.get("artifactName");
                 int codecoinsCost = Integer.parseInt(data.get("codecoinsCost"));
                 String artifactDescription = data.get("artifactDescription");
+
                 System.out.println(artifactName);
+
                 Artifact artifact = new Artifact(0,artifactName, codecoinsCost,true,artifactDescription,true);
                 artifactDao.addNewArtifact(artifact);
                 String artifactJSON = objectMapper.writeValueAsString(artifact);
