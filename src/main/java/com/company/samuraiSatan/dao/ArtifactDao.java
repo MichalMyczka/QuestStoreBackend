@@ -48,7 +48,7 @@ public class ArtifactDao extends Dao {
             addNewArtifact.setInt(2, artifact.getCost());
             addNewArtifact.setBoolean(3, artifact.getActive());
             addNewArtifact.setString(4, artifact.getDescription());
-            addNewArtifact.setBoolean(5, artifact.getActive());
+            addNewArtifact.setBoolean(5, artifact.getSolo());
             addNewArtifact.executeUpdate();
             addNewArtifact.close();
         } catch (SQLException e) {
@@ -73,13 +73,15 @@ public class ArtifactDao extends Dao {
     public void updateArtifact(Artifact artifact) {
         PreparedStatement editArtifact;
         connect();
-        String sql = "UPDATE artifacts SET \"ArtifactName\" = ?, \"Cost\" = ?, \"Description\" = ? WHERE \"Artifact_ID\" = ?";
+        String sql = "UPDATE artifacts SET \"ArtifactName\" = ?, \"Cost\" = ?, \"Is_Active\" = ?, \"Description\" = ?, \"Is_Solo\" = ? WHERE \"Artifact_ID\" = ?";
         try {
             editArtifact = connection.prepareStatement(sql);
             editArtifact.setString(1, artifact.getArtifactName());
             editArtifact.setInt(2, artifact.getCost());
-            editArtifact.setString(3, artifact.getDescription());
-            editArtifact.setInt(4, artifact.getArtifactID());
+            editArtifact.setBoolean(3, artifact.getActive());
+            editArtifact.setString(4, artifact.getDescription());
+            editArtifact.setBoolean(5,artifact.getSolo());
+            editArtifact.setInt(6, artifact.getArtifactID());
             editArtifact.executeUpdate();
             editArtifact.close();
             connection.close();

@@ -37,14 +37,17 @@ public class UpdateArtifactHandler implements HttpHandler {
                 BufferedReader br = new BufferedReader(isr);
 
                 Map<String, String> data = Parser.parseFormData(br.readLine());
+                int artifactID = Integer.parseInt(data.get("artifactID"));
                 String artifactName = data.get("artifactName");
                 int codecoinsCost = Integer.parseInt(data.get("codecoinsCost"));
+                boolean isActive = Boolean.parseBoolean(data.get("artifactIsActive"));
                 String artifactDescription = data.get("artifactDescription");
+                boolean isSolo = Boolean.parseBoolean(data.get("artifactIsSolo"));
 
                 System.out.println(artifactName);
 
-                Artifact artifact = new Artifact(0,artifactName, codecoinsCost,true,artifactDescription,true);
-                artifactDao.addNewArtifact(artifact);
+                Artifact artifact = new Artifact(artifactID,artifactName, codecoinsCost, isActive,artifactDescription, isSolo);
+                artifactDao.updateArtifact(artifact);
                 String artifactJSON = objectMapper.writeValueAsString(artifact);
                 HttpCookie cookie = new HttpCookie("artifact", artifactJSON);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
