@@ -65,7 +65,7 @@ public class MenuHandler {
         String password = io.gatherInput("Enter password: ");
         User user = userDao.getUser(email, password);
         isLogin = true;
-        switch (user.getRole_ID()) {
+        switch (user.getRoleID()) {
             case 1:
                 initializeStudentMenu(user);
                 studentPanel();
@@ -170,10 +170,10 @@ public class MenuHandler {
 
         int solo = io.gatherIntInput("Change artifact type: (1 - solo/ 2 - group) ", (int) 1, 2);
         if (solo == 1) {
-            artifact.setIs_Solo(true);
+            artifact.setSolo(true);
         }
         else {
-            artifact.setIs_Solo(false);
+            artifact.setSolo(false);
         }
         artifactsDao.splitArtifact(artifact);
     }
@@ -185,7 +185,7 @@ public class MenuHandler {
         int id = io.gatherIntInput("Enter ID of artifact to change: ",1, questsDao.getQuests().size());
         Artifact artifact = artifacts.get(id-1);
         String name = io.gatherInput("Enter new name of the artifact: ");
-        artifact.setArtifact_Name(name);
+        artifact.setArtifactName(name);
         int cost = io.gatherIntInput("Enter new reward of the quest: ", (int) 1, 99999);
         artifact.setCost(cost);
         String description = io.gatherInput("Enter new description of the artifact: ");

@@ -30,13 +30,13 @@ public class QuestDao extends Dao {
     }
 
     public Quest createQuest(ResultSet results) throws SQLException {
-        int quest_id = results.getInt("Quest_ID");
+        int questID = results.getInt("Quest_ID");
         String name = results.getString("QuestName");
         int reward = results.getInt("Reward");
-        boolean is_Active = results.getBoolean("Is_Active");
+        boolean isActive = results.getBoolean("Is_Active");
         String description = results.getString("Description");
-        boolean is_Basic = results.getBoolean("Is_Basic");
-        return new Quest(quest_id, name, reward, is_Active, description, is_Basic);
+        boolean isBasic = results.getBoolean("Is_Basic");
+        return new Quest(questID, name, reward, isActive, description, isBasic);
     }
 
     public void addQuest(Quest quest) {
@@ -45,11 +45,11 @@ public class QuestDao extends Dao {
         String sql = "INSERT INTO quests (\"QuestName\", \"Reward\", \"Is_Active\", \"Description\", \"Is_Basic\") VALUES (?, ?, ?, ?, ?)";
         try {
             addNewQuest = connection.prepareStatement(sql);
-            addNewQuest.setString(1, quest.getQuest_Name());
+            addNewQuest.setString(1, quest.getQuestName());
             addNewQuest.setInt(2, quest.getReward());
-            addNewQuest.setBoolean(3, quest.isIs_Active());
+            addNewQuest.setBoolean(3, quest.isIsActive());
             addNewQuest.setString(4, quest.getDescription());
-            addNewQuest.setBoolean(5, quest.getIs_Basic());
+            addNewQuest.setBoolean(5, quest.getIsBasic());
             addNewQuest.executeUpdate();
             addNewQuest.close();
         } catch (SQLException e) {
@@ -77,10 +77,10 @@ public class QuestDao extends Dao {
         String sql = "UPDATE quests SET \"QuestName\" = ?, \"Reward\" = ?, \"Description\" = ? WHERE \"Quest_ID\" = ?";
         try {
             editQuest = connection.prepareStatement(sql);
-            editQuest.setString(1, quest.getQuest_Name());
+            editQuest.setString(1, quest.getQuestName());
             editQuest.setInt(2, quest.getReward());
             editQuest.setString(3, quest.getDescription());
-            editQuest.setInt(4, quest.getQuest_ID());
+            editQuest.setInt(4, quest.getQuestID());
             editQuest.executeUpdate();
             editQuest.close();
             connection.close();
@@ -95,8 +95,8 @@ public class QuestDao extends Dao {
         String sql = "UPDATE quests SET \"Is_Basic\" = ? WHERE \"Quest_ID\" = ?";
         try {
             splitQuest = connection.prepareStatement(sql);
-            splitQuest.setBoolean(1, quest.getIs_Basic());
-            splitQuest.setInt(2, quest.getQuest_ID());
+            splitQuest.setBoolean(1, quest.getIsBasic());
+            splitQuest.setInt(2, quest.getQuestID());
             splitQuest.executeUpdate();
             splitQuest.close();
             connection.close();

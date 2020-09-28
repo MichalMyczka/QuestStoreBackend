@@ -28,9 +28,9 @@ public class ClassDao extends Dao {
     }
 
     private Class createClass(ResultSet results) throws SQLException {
-        int class_ID = results.getInt("Class_ID");
-        String class_Name = results.getString("ClassName");
-        return new Class(class_ID, class_Name);
+        int classID = results.getInt("Class_ID");
+        String className = results.getString("ClassName");
+        return new Class(classID, className);
     }
 
     public void addClass(Class classs) {
@@ -39,7 +39,7 @@ public class ClassDao extends Dao {
         String sql = "INSERT INTO classes (\"ClassName\") VALUES (?)";
         try {
             addClass = connection.prepareStatement(sql);
-            addClass.setString(1, classs.getClass_Name());
+            addClass.setString(1, classs.getClassName());
             addClass.executeUpdate();
             addClass.close();
             connection.close();

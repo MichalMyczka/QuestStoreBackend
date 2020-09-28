@@ -1,22 +1,22 @@
 package com.company.samuraiSatan.models;
 
 public class ExperienceLvl {
-    private int experienceLvl_ID;
+    private int experienceLvlID;
     private String experienceName;
     private int experienceNeeded;
 
-    public ExperienceLvl(int experienceLvl_id, String experienceName, int experienceNeeded) {
-        this.experienceLvl_ID = experienceLvl_id;
+    public ExperienceLvl(int experienceLvlID, String experienceName, int experienceNeeded) {
+        this.experienceLvlID = experienceLvlID;
         this.experienceName = experienceName;
         this.experienceNeeded = experienceNeeded;
     }
 
     public int getExperienceLvl_ID() {
-        return experienceLvl_ID;
+        return experienceLvlID;
     }
 
-    public void setExperienceLvl_ID(int experienceLvl_ID) {
-        this.experienceLvl_ID = experienceLvl_ID;
+    public void setExperienceLvlID(int experienceLvlID) {
+        this.experienceLvlID = experienceLvlID;
     }
 
     public String getExperienceName() {

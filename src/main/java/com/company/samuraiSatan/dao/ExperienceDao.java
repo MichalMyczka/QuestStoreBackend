@@ -27,10 +27,10 @@ public class ExperienceDao extends Dao{
     }
 
     private ExperienceLvl createExperience(ResultSet results) throws SQLException {
-        int experienceLvl_ID = results.getInt("ExperienceLvl_ID");
+        int experienceLvlID = results.getInt("ExperienceLvl_ID");
         String experienceName = results.getString("ExperienceName");
         int experienceNeeded = results.getInt("ExperienceNeeded");
-        return new ExperienceLvl(experienceLvl_ID, experienceName,experienceNeeded);
+        return new ExperienceLvl(experienceLvlID, experienceName,experienceNeeded);
     }
 
     public void addExperienceLvl(ExperienceLvl experienceLvl) {

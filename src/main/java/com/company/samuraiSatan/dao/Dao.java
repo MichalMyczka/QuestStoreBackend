@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.SQLException;
+import java.util.Map;
+
 import com.company.samuraiSatan.helpers.JSONreader;
 
 public abstract class Dao {
@@ -17,12 +19,12 @@ public abstract class Dao {
     }
 
     public void connect() {
-        Map<String, String> data = jsonReader.JSONread()
+        Map<String, String> data = jsonReader.JSONread();
         try {
             connection = DriverManager.getConnection(
                     data.get("connection"),
                     data.get("user"),
-                    data.get("password"),
+                    data.get("password")
                     );
             statement = connection.createStatement();
             System.out.println("polaczono z baza");

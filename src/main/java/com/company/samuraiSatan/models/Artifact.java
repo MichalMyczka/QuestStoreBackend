@@ -22,11 +22,11 @@ public class Artifact {
         this.isSolo = isSolo;
     }
 
-    public int getArtifact_ID() {
+    public int getArtifactID() {
         return id;
     }
 
-    public String getArtifact_Name() {
+    public String getArtifactName() {
         return name;
     }
 
@@ -46,8 +46,8 @@ public class Artifact {
         return isSolo;
     }
 
-    public void setArtifact_Name(String artifact_Name) {
-        this.name = artifact_Name;
+    public void setArtifactName(String artifactName) {
+        this.name = artifactName;
     }
 
     public void setCost(int cost) {
