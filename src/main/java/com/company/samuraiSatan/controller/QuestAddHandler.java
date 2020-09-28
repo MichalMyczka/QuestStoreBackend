@@ -32,10 +32,12 @@ public class QuestAddHandler implements HttpHandler {
                 String questName = data.get("questName");
                 String questDescription = data.get("questDescription");
                 int codecoinsEarned = Integer.parseInt(data.get("codecoinsEarned"));
+                boolean isActive = Boolean.parseBoolean(data.get("questIsActive"));
+                boolean isBasic = Boolean.parseBoolean(data.get("questIsBasic"));
 
                 System.out.println(questName);
 
-                Quest quest = new Quest(0,questName,codecoinsEarned,true,questDescription,true);
+                Quest quest = new Quest(0,questName,codecoinsEarned,isActive,questDescription,isBasic);
                 questDao.addQuest(quest);
                 String questJSON = objectMapper.writeValueAsString(quest);
                 HttpCookie cookie = new HttpCookie("quest", questJSON);

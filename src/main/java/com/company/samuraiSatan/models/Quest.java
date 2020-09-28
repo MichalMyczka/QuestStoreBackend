@@ -38,7 +38,7 @@ public class Quest {
         return reward;
     }
 
-    public boolean isIsActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
@@ -66,8 +66,8 @@ public class Quest {
         this.description = description;
     }
 
-    public void setIs_Basic(boolean is_Basic) {
-        this.isBasic = is_Basic;
+    public void setIsBasic(boolean isBasic) {
+        this.isBasic = isBasic;
     }
 
 }

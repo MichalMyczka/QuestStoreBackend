@@ -153,10 +153,10 @@ public class MenuHandler {
 
         int basic = io.gatherIntInput("Change quest type: (1 - basic/ 2 - extra) ", (int) 1, 2);
         if (basic == 1) {
-            quest.setIs_Basic(true);
+            quest.setIsBasic(true);
         }
         else {
-            quest.setIs_Basic(false);
+            quest.setIsBasic(false);
         }
         questsDao.splitQuest(quest);
     }

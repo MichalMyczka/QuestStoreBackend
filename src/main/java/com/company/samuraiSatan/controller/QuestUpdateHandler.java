@@ -39,12 +39,11 @@ public class QuestUpdateHandler implements HttpHandler {
                 String questName = data.get("questName");
                 String questDescription = data.get("questDescription");
                 int codecoinsEarned = Integer.parseInt(data.get("codecoinsEarned"));
-                boolean questIsbasic = Boolean.parseBoolean(data.get("questIs_basic"));
-                boolean questIsActive = Boolean.parseBoolean(data.get("questIs_basic"));
+                boolean isActive = Boolean.parseBoolean(data.get("questIsActive"));
+                boolean isBasic = Boolean.parseBoolean(data.get("questIsBasic"));
+                int questID = Integer.parseInt(data.get("questID"));
 
-                System.out.println(questName);
-
-                Quest quest = new Quest(0,questName,codecoinsEarned,questIsActive,questDescription,questIsbasic);
+                Quest quest = new Quest(questID,questName,codecoinsEarned,isActive,questDescription,isBasic);
                 questDao.updateQuest(quest);
                 String questJSON = objectMapper.writeValueAsString(quest);
                 HttpCookie cookie = new HttpCookie("quest", questJSON);

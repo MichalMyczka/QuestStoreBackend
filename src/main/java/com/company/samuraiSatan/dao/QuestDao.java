@@ -47,7 +47,7 @@ public class QuestDao extends Dao {
             addNewQuest = connection.prepareStatement(sql);
             addNewQuest.setString(1, quest.getQuestName());
             addNewQuest.setInt(2, quest.getReward());
-            addNewQuest.setBoolean(3, quest.isIsActive());
+            addNewQuest.setBoolean(3, quest.getIsActive());
             addNewQuest.setString(4, quest.getDescription());
             addNewQuest.setBoolean(5, quest.getIsBasic());
             addNewQuest.executeUpdate();
@@ -74,13 +74,16 @@ public class QuestDao extends Dao {
     public void updateQuest(Quest quest) {
         PreparedStatement editQuest;
         connect();
-        String sql = "UPDATE quests SET \"QuestName\" = ?, \"Reward\" = ?, \"Description\" = ? WHERE \"Quest_ID\" = ?";
+        String sql = "UPDATE quests SET \"QuestName\" = ?, \"Reward\" = ?,\"Is_Active\" = ?, \"Description\" = ?, \"Is_Basic\" = ? WHERE \"Quest_ID\" = ?";
         try {
             editQuest = connection.prepareStatement(sql);
             editQuest.setString(1, quest.getQuestName());
             editQuest.setInt(2, quest.getReward());
-            editQuest.setString(3, quest.getDescription());
-            editQuest.setInt(4, quest.getQuestID());
+            editQuest.setBoolean(3, quest.getIsActive());
+            editQuest.setString(4, quest.getDescription());
+            editQuest.setBoolean(5, quest.getIsBasic());
+            editQuest.setInt(6, quest.getQuestID());
+            System.out.println(editQuest.toString());
             editQuest.executeUpdate();
             editQuest.close();
             connection.close();
