@@ -15,7 +15,6 @@ import java.util.Map;
 
 public class mentorAddCodeCoolerHandler implements HttpHandler {
 
-    ReadHtml readHtml = new ReadHtml();
     UserDao userDao = new UserDao();
     private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -30,13 +29,16 @@ public class mentorAddCodeCoolerHandler implements HttpHandler {
 
                 Map<String, String> data = Parser.parseFormData(br.readLine());
 
-                String name = data.get("name");
-                String surname = data.get("surname");
+//                String name = data.get("name");
+//                String surname = data.get("surname");
                 String email = data.get("email");
                 //int phone = Integer.parseInt(data.get("phone"));
 
-                User user = new User(666, name, surname, email, 666, "password",
-                        1, true, 6,6, 6  );
+                /*
+                    CHANGE ID
+                 */
+                User user = new User(7, "ccTestName", "ccTestSurname", email, 666, "password",
+                        2, true, 2,1, 0  );
 
                 userDao.addUser(user);
 
@@ -49,5 +51,6 @@ public class mentorAddCodeCoolerHandler implements HttpHandler {
             HttpCommunication.sendResponse(e.getMessage(), exchange, 404);
             e.printStackTrace();
         }
+
     }
 }

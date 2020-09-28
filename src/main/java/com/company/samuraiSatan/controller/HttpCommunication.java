@@ -12,7 +12,8 @@ public  class HttpCommunication {
             exchange.getResponseHeaders().put("Content-type", Collections.singletonList("application/json"));
         }
         exchange.getResponseHeaders().put("Access-Control-Allow-Origin", Collections.singletonList("*"));
-        exchange.sendResponseHeaders(status, response.length());
+//        exchange.sendResponseHeaders(status, response.length());
+        exchange.sendResponseHeaders(status, response.getBytes().length);
 
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());
