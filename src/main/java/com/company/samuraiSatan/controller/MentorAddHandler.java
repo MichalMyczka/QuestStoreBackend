@@ -15,9 +15,9 @@ import java.io.InputStreamReader;
 import java.net.HttpCookie;
 import java.util.Map;
 
-public class QuestAddHandler implements HttpHandler {
+public class MentorAddHandler implements HttpHandler {
 
-    QuestDao questDao = new QuestDao();
+    UserDao userDao = new UserDao();
     private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -29,16 +29,17 @@ public class QuestAddHandler implements HttpHandler {
                 BufferedReader br = new BufferedReader(isr);
 
                 Map<String, String> data = Parser.parseFormData(br.readLine());
-                String questName = data.get("questName");
-                String questDescription = data.get("questDescription");
-                int codecoinsEarned = Integer.parseInt(data.get("codecoinsEarned"));
-                boolean isActive = Boolean.parseBoolean(data.get("questIsActive"));
-                boolean isBasic = Boolean.parseBoolean(data.get("questIsBasic"));
+                String mentorName = data.get("mName");
+                String mentorSurname = data.get("mSurname");
+                String mentorEmail = data.get("mEmail");
+                int mentorPhone = Integer.parseInt(data.get("mPhone"));
+                String mentorPassword = data.get("mPassword");
+                int mentorClass = Integer.parseInt(data.get("mClass"));
 
-                Quest quest = new Quest(0,questName,codecoinsEarned,isActive,questDescription,isBasic);
-                questDao.addQuest(quest);
-                String questJSON = objectMapper.writeValueAsString(quest);
-                HttpCookie cookie = new HttpCookie("quest", questJSON);
+                User user = new User(0, mentorName,mentorSurname,mentorEmail,mentorPhone,mentorPassword, 2, true, mentorClass, 1, 0);
+                userDao.addUser(user);
+                String questJSON = objectMapper.writeValueAsString(user);
+                HttpCookie cookie = new HttpCookie("user", questJSON);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
                 HttpCommunication.sendResponse(questJSON, httpExchange, 200);
             }

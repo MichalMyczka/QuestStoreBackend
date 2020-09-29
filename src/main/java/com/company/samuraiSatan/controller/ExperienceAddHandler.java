@@ -1,9 +1,9 @@
 package com.company.samuraiSatan.controller;
 
-import com.company.samuraiSatan.dao.QuestDao;
+import com.company.samuraiSatan.dao.ExperienceDao;
 import com.company.samuraiSatan.dao.UserDao;
 import com.company.samuraiSatan.helpers.Parser;
-import com.company.samuraiSatan.models.Quest;
+import com.company.samuraiSatan.models.ExperienceLvl;
 import com.company.samuraiSatan.models.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
@@ -15,9 +15,8 @@ import java.io.InputStreamReader;
 import java.net.HttpCookie;
 import java.util.Map;
 
-public class QuestAddHandler implements HttpHandler {
-
-    QuestDao questDao = new QuestDao();
+public class ExperienceAddHandler implements HttpHandler {
+    ExperienceDao experienceDao = new ExperienceDao();
     private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -29,16 +28,14 @@ public class QuestAddHandler implements HttpHandler {
                 BufferedReader br = new BufferedReader(isr);
 
                 Map<String, String> data = Parser.parseFormData(br.readLine());
-                String questName = data.get("questName");
-                String questDescription = data.get("questDescription");
-                int codecoinsEarned = Integer.parseInt(data.get("codecoinsEarned"));
-                boolean isActive = Boolean.parseBoolean(data.get("questIsActive"));
-                boolean isBasic = Boolean.parseBoolean(data.get("questIsBasic"));
+                String experienceName = data.get("levelTitle");
+                int experienceNeeded = Integer.parseInt(data.get("codepointAmount"));
 
-                Quest quest = new Quest(0,questName,codecoinsEarned,isActive,questDescription,isBasic);
-                questDao.addQuest(quest);
-                String questJSON = objectMapper.writeValueAsString(quest);
-                HttpCookie cookie = new HttpCookie("quest", questJSON);
+                ExperienceLvl experienceLvl = new ExperienceLvl(0,experienceName, experienceNeeded);
+                experienceDao.addExperienceLvl(experienceLvl);
+
+                String questJSON = objectMapper.writeValueAsString(experienceLvl);
+                HttpCookie cookie = new HttpCookie("experienceLvl", questJSON);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
                 HttpCommunication.sendResponse(questJSON, httpExchange, 200);
             }
@@ -47,4 +44,5 @@ public class QuestAddHandler implements HttpHandler {
             e.printStackTrace();
         }
     }
+
 }

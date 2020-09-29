@@ -13,6 +13,11 @@ public class App {
 
         server.createContext("/login", new LoginHandler());
         server.createContext("/static", new Static());
+
+        server.createContext("/creepAddMentor", new MentorAddHandler());
+
+        server.createContext("/createExperienceLvl", new ExperienceAddHandler());
+
         // server.createContext("/quest", new QuestHandler());
         /*
         /quest/update/1
