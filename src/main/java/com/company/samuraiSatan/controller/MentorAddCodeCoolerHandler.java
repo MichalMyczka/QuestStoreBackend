@@ -36,7 +36,7 @@ public class MentorAddCodeCoolerHandler implements HttpHandler {
                 int cPhone = Integer.parseInt(data.get("cPhone"));
 
                 User user = new User(0, cName, cSurname, email, cPhone, cPassword,
-                        2, true, 1,2, 0  );
+                        1, true, 1,2, 0  );
 
                 userDao.addUser(user);
 
