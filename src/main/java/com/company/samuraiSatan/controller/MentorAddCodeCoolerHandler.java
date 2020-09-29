@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 import java.net.HttpCookie;
 import java.util.Map;
 
-public class mentorAddCodeCoolerHandler implements HttpHandler {
+public class MentorAddCodeCoolerHandler implements HttpHandler {
 
     UserDao userDao = new UserDao();
     private ObjectMapper objectMapper = new ObjectMapper();
