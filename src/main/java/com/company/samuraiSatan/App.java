@@ -1,8 +1,7 @@
+
 package com.company.samuraiSatan;
 
-import com.company.samuraiSatan.controller.CreepStartingPageHandler;
-import com.company.samuraiSatan.controller.LoginHandler;
-import com.company.samuraiSatan.controller.mentorAddCodeCoolerHandler;
+import com.company.samuraiSatan.controller.*;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -15,12 +14,21 @@ public class App {
 
         server.createContext("/login", new LoginHandler());
         server.createContext("/static", new Static());
-        server.createContext("/creepStarting", new CreepStartingPageHandler());
+        server.createContext("/creepAddMentor", new MentorAddHandler());
+        server.createContext("/createExperienceLvl", new ExperienceAddHandler());
+        server.createContext("/creepAddClass", new AddClassHandler());
+        server.createContext("/creepEditMentor", new MentorEditHandler());
+        server.createContext("/seeMentorProfile", new SeeMentorProfileHandler());
         server.createContext("/mentorAddUser", new mentorAddCodeCoolerHandler());
+        server.createContext("/addQuest", new QuestAddHandler());
+        server.createContext("/updateQuest", new QuestUpdateHandler());
+        server.createContext("/mentorAddArtifact", new AddArtifactHandler());
+        server.createContext("/updateArtifact", new UpdateArtifactHandler());
 
         server.setExecutor(null);
         server.start();
 
         System.out.println("Server has started on port " + server.getAddress().getPort());
+
     }
 }
