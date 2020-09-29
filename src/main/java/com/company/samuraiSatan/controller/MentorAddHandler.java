@@ -1,5 +1,6 @@
 package com.company.samuraiSatan.controller;
 
+import com.company.samuraiSatan.SimpleMD5Example;
 import com.company.samuraiSatan.dao.UserDao;
 import com.company.samuraiSatan.helpers.Parser;
 import com.company.samuraiSatan.models.User;
@@ -15,6 +16,7 @@ import java.util.Map;
 public class MentorAddHandler implements HttpHandler {
 
     UserDao userDao = new UserDao();
+    SimpleMD5Example simpleMD5Example = new SimpleMD5Example();
     private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -30,7 +32,7 @@ public class MentorAddHandler implements HttpHandler {
                 String mentorSurname = data.get("mSurname");
                 String mentorEmail = data.get("mEmail");
                 int mentorPhone = Integer.parseInt(data.get("mPhone"));
-                String mentorPassword = data.get("mPassword");
+                String mentorPassword = simpleMD5Example.passwordHash(data.get("mPassword"));
                 int mentorClass = Integer.parseInt(data.get("mClass"));
 
                 User user = new User(0, mentorName,mentorSurname,mentorEmail,mentorPhone,mentorPassword, 2, true, mentorClass, 1, 0);
