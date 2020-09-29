@@ -18,6 +18,10 @@ public class App {
 
         server.createContext("/createExperienceLvl", new ExperienceAddHandler());
 
+        server.createContext("/creepAddClass", new AddClassHandler());
+
+        server.createContext("/creepEditMentor", new MentorEditHandler());
+
         // server.createContext("/quest", new QuestHandler());
         /*
         /quest/update/1

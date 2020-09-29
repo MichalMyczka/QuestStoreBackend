@@ -107,16 +107,17 @@ public class UserDao extends Dao {
     public void updateMentor(User user) {
         PreparedStatement editMentor;
         connect();
-        String sql = "UPDATE users SET \"Name\" = ?,\"Surname\" = ?, \"Email\" = ?, \"Phone\" = ?, \"Password\" = ?, \"UserClass_ID\" = ?  WHERE \"User_ID\" = ?";
+        String sql = "UPDATE users SET \"Name\" = ?,\"Surname\" = ?, \"Email\" = ?, \"Phone\" = ?, \"Is_Active\" = ?, \"Password\" = ?, \"UserClass_ID\" = ?  WHERE \"User_ID\" = ?";
         try {
             editMentor = connection.prepareStatement(sql);
             editMentor.setString(1, user.getUserName());
             editMentor.setString(2, user.getUserSurname());
             editMentor.setString(3, user.getEmail());
             editMentor.setInt(4, user.getPhone());
-            editMentor.setString(5, user.getPassword());
-            editMentor.setInt(6, user.getUserClassID());
-            editMentor.setInt(7, user.getUserID());
+            editMentor.setBoolean(5, user.getIsActive());
+            editMentor.setString(6, user.getPassword());
+            editMentor.setInt(7, user.getUserClassID());
+            editMentor.setInt(8, user.getUserID());
             editMentor.executeUpdate();
             editMentor.close();
             connection.close();
