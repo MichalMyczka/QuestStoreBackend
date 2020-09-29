@@ -1,8 +1,8 @@
 package com.company.samuraiSatan.controller;
 
-import com.company.samuraiSatan.dao.UserDao;
+import com.company.samuraiSatan.dao.ArtifactDao;
 import com.company.samuraiSatan.helpers.Parser;
-import com.company.samuraiSatan.models.User;
+import com.company.samuraiSatan.models.Artifact;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -11,9 +11,8 @@ import java.io.*;
 import java.net.HttpCookie;
 import java.util.Map;
 
-public class LoginHandler implements HttpHandler {
-
-    UserDao userDao = new UserDao();
+public class AddArtifactHandler implements HttpHandler {
+    ArtifactDao artifactDao = new ArtifactDao();
     private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -25,16 +24,19 @@ public class LoginHandler implements HttpHandler {
                 BufferedReader br = new BufferedReader(isr);
 
                 Map<String, String> data = Parser.parseFormData(br.readLine());
-                String email = data.get("email");
-                String password = data.get("password");
+                String artifactName = data.get("artifactName");
+                int codecoinsCost = Integer.parseInt(data.get("codecoinsCost"));
+                boolean isActive = Boolean.parseBoolean(data.get("artifactIsActive"));
+                String artifactDescription = data.get("artifactDescription");
+                boolean isSolo = Boolean.parseBoolean(data.get("artifactIsSolo"));
 
-                System.out.println(email);
-
-                User user = userDao.getUser(email, password);
-                String userJSON = objectMapper.writeValueAsString(user);
-                HttpCookie cookie = new HttpCookie("user", userJSON);
+                System.out.println(artifactName);
+                Artifact artifact = new Artifact(0,artifactName, codecoinsCost,isActive,artifactDescription,isSolo);
+                artifactDao.addNewArtifact(artifact);
+                String artifactJSON = objectMapper.writeValueAsString(artifact);
+                HttpCookie cookie = new HttpCookie("artifact", artifactJSON);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
-                HttpCommunication.sendResponse(userJSON, httpExchange, 200);
+                HttpCommunication.sendResponse(artifactJSON, httpExchange, 200);
             }
         } catch (Exception e) {
             HttpCommunication.sendResponse(e.getMessage(), httpExchange, 404);

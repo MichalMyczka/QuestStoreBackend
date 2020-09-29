@@ -65,19 +65,19 @@ public class MenuHandler {
         String password = io.gatherInput("Enter password: ");
         User user = userDao.getUser(email, password);
         isLogin = true;
-        switch (user.getRole_ID()) {
-            case 1:
+        switch (user.getRoleID()) {
+            case 1 -> {
                 initializeStudentMenu(user);
                 studentPanel();
-                break;
-            case 2:
+            }
+            case 2 -> {
                 initializeMentorMenu(user);
                 mentorPanel();
-                break;
-            case 3:
+            }
+            case 3 -> {
                 initializeCreepMenu(user);
                 creepPanel();
-                break;
+            }
         }
     }
 
@@ -86,7 +86,6 @@ public class MenuHandler {
     }
 
 //----------------------------------------------------------------------------------------------------------------------
-//funkcje tutaj czy gdzies indziej???
     private void initializeCreepMenu(User user) {
         creepMenu = new HashMap<>();
         creepMenu.put(1, user::createNewMentor);
@@ -106,7 +105,6 @@ public class MenuHandler {
     }
 
 //----------------------------------------------------------------------------------------------------------------------
-//funkcje tutaj czy gdzies indziej???
     private void initializeMentorMenu(User user) {
         mentorMenu = new HashMap<>();
         mentorMenu.put(1, user::createNewCodecooler);
@@ -153,10 +151,10 @@ public class MenuHandler {
 
         int basic = io.gatherIntInput("Change quest type: (1 - basic/ 2 - extra) ", (int) 1, 2);
         if (basic == 1) {
-            quest.setIs_Basic(true);
+            quest.setIsBasic(true);
         }
         else {
-            quest.setIs_Basic(false);
+            quest.setIsBasic(false);
         }
         questsDao.splitQuest(quest);
     }
@@ -170,10 +168,10 @@ public class MenuHandler {
 
         int solo = io.gatherIntInput("Change artifact type: (1 - solo/ 2 - group) ", (int) 1, 2);
         if (solo == 1) {
-            artifact.setIs_Solo(true);
+            artifact.setSolo(true);
         }
         else {
-            artifact.setIs_Solo(false);
+            artifact.setSolo(false);
         }
         artifactsDao.splitArtifact(artifact);
     }
@@ -185,7 +183,7 @@ public class MenuHandler {
         int id = io.gatherIntInput("Enter ID of artifact to change: ",1, questsDao.getQuests().size());
         Artifact artifact = artifacts.get(id-1);
         String name = io.gatherInput("Enter new name of the artifact: ");
-        artifact.setArtifact_Name(name);
+        artifact.setArtifactName(name);
         int cost = io.gatherIntInput("Enter new reward of the quest: ", (int) 1, 99999);
         artifact.setCost(cost);
         String description = io.gatherInput("Enter new description of the artifact: ");
@@ -194,10 +192,9 @@ public class MenuHandler {
     }
 
 //----------------------------------------------------------------------------------------------------------------------
-//funkcje tutaj czy gdzies indziej???
     private void initializeStudentMenu(User user) {
         studentMenu = new HashMap<>();
-//        studentMenu.put(1, user::showMyWallet);
+        studentMenu.put(1, userDao::showCodecoolerExp);
 //        studentMenu.put(2, user::buyArtifact);
 //        studentMenu.put(3, user::showMyLevelOfExperience);
 //        studentMenu.put(4, user::showAvailableQuests);
@@ -209,6 +206,7 @@ public class MenuHandler {
         while (isLogin) {
             ui.displayStudentMenu();
             int userChoice = io.gatherIntInput("\nenter a number: ",1,6);
+            studentMenu.get(userChoice).run();
         }
     }
 

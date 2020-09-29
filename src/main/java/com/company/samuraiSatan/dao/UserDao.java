@@ -1,9 +1,7 @@
 package com.company.samuraiSatan.dao;
 
-import com.company.samuraiSatan.models.Quest;
 import com.company.samuraiSatan.models.User;
 import com.jakewharton.fliptables.FlipTableConverters;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,18 +26,18 @@ public class UserDao extends Dao {
     }
 
     private User createUser(ResultSet results) throws SQLException {
-        int user_ID = results.getInt("User_ID");
-        String user_Name = results.getString("Name");
-        String user_Surname = results.getString("Surname");
+        int userID = results.getInt("User_ID");
+        String userName = results.getString("Name");
+        String userSurname = results.getString("Surname");
         String email = results.getString("Email");
-        Integer phone = results.getInt("Phone");
+        int phone = results.getInt("Phone");
         String password = results.getString("Password");
-        int role_ID = results.getInt("Role_ID");
+        int roleID = results.getInt("Role_ID");
         int totalBalance = results.getInt("TotalBalance");
-        boolean is_Active = results.getBoolean("Is_Active");
-        int userClass_ID = results.getInt("UserClass_ID");
-        int experienceLvl_ID = results.getInt("ExperienceLvl_ID");
-        return new User(user_ID, user_Name, user_Surname,email, phone, password, role_ID, is_Active, userClass_ID, experienceLvl_ID, totalBalance);
+        boolean isActive = results.getBoolean("Is_Active");
+        int userClassID = results.getInt("UserClass_ID");
+        int experienceLvlID = results.getInt("ExperienceLvl_ID");
+        return new User(userID, userName, userSurname,email, phone, password, roleID, isActive, userClassID, experienceLvlID, totalBalance);
     }
 
     public User getUser(String email, String password) {
@@ -52,11 +50,11 @@ public class UserDao extends Dao {
             results.next();
             List<User> users = getUsers();
             int indexDifference = 1;
-            int user_ID = results.getInt("User_ID") - indexDifference;
+            int userID = results.getInt("User_ID") - indexDifference;
             results.close();
             statement.close();
             connection.close();
-            return users.get(user_ID);
+            return users.get(userID);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             throw new NoSuchElementException("There isn't user with specified data in database");
@@ -69,15 +67,15 @@ public class UserDao extends Dao {
         String sql = "INSERT INTO users (\"Name\", \"Surname\",\"Email\", \"Phone\",\"Password\", \"Role_ID\", \"Is_Active\", \"UserClass_ID\", \"ExperienceLvl_ID\", \"TotalBalance\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             addUser = connection.prepareStatement(sql);
-            addUser.setString(1, user.getUser_Name());
-            addUser.setString(2, user.getUser_Surname());
+            addUser.setString(1, user.getUserName());
+            addUser.setString(2, user.getUserSurname());
             addUser.setString(3, user.getEmail());
             addUser.setInt(4, user.getPhone());
             addUser.setString(5, user.getPassword());
-            addUser.setInt(6, user.getRole_ID());
-            addUser.setBoolean(7, user.getIs_Active());
-            addUser.setInt(8, user.getUserClass_ID());
-            addUser.setInt(9, user.getExperienceLvl_ID());
+            addUser.setInt(6, user.getRoleID());
+            addUser.setBoolean(7, user.getIsActive());
+            addUser.setInt(8, user.getUserClassID());
+            addUser.setInt(9, user.getExperienceLvlID());
             addUser.setInt(10, user.getTotalBalance());
 
             addUser.executeUpdate();
@@ -88,35 +86,35 @@ public class UserDao extends Dao {
         }
     }
 
-//----------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
 
-public void showAllMentors() {
-    String sql = "SELECT * FROM users WHERE \"Role_ID\" = 2 ORDER BY \"User_ID\"";
-    connect();
-    try {
-        ResultSet rs = statement.executeQuery(sql);
-//        System.out.println(FlipTableConverters.fromResultSet(rs));
-        rs.close();
-        statement.close();
-        connection.close();
-    } catch (SQLException e) {
-        System.out.println(e.getMessage());
+    public void showAllMentors() {
+        String sql = "SELECT * FROM users WHERE \"Role_ID\" = 2 ORDER BY \"User_ID\"";
+        connect();
+        try {
+            ResultSet rs = statement.executeQuery(sql);
+            rs.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
-}
 
     public void updateMentor(User user) {
         PreparedStatement editMentor;
         connect();
-        String sql = "UPDATE users SET \"Name\" = ?,\"Surname\" = ?, \"Email\" = ?, \"Phone\" = ?, \"Password\" = ?, \"UserClass_ID\" = ?  WHERE \"User_ID\" = ?";
+        String sql = "UPDATE users SET \"Name\" = ?,\"Surname\" = ?, \"Email\" = ?, \"Phone\" = ?, \"Is_Active\" = ?, \"Password\" = ?, \"UserClass_ID\" = ?  WHERE \"User_ID\" = ?";
         try {
             editMentor = connection.prepareStatement(sql);
-            editMentor.setString(1, user.getUser_Name());
-            editMentor.setString(2, user.getUser_Surname());
+            editMentor.setString(1, user.getUserName());
+            editMentor.setString(2, user.getUserSurname());
             editMentor.setString(3, user.getEmail());
             editMentor.setInt(4, user.getPhone());
-            editMentor.setString(5, user.getPassword());
-            editMentor.setInt(6, user.getUserClass_ID());
-            editMentor.setInt(7, user.getUser_ID());
+            editMentor.setBoolean(5, user.getIsActive());
+            editMentor.setString(6, user.getPassword());
+            editMentor.setInt(7, user.getUserClassID());
+            editMentor.setInt(8, user.getUserID());
             editMentor.executeUpdate();
             editMentor.close();
             connection.close();
@@ -125,5 +123,20 @@ public void showAllMentors() {
         }
     }
 
+    //----------------------------------------------------------------------------------------------------------------------
+
+    public void showCodecoolerExp() {
+        String sql = "SELECT \"User_ID\" ,\"Name\",\"Surname\",\"ExperienceLvl_ID\" FROM users WHERE \"Role_ID\" = 1";
+        connect();
+        try {
+            ResultSet rs = statement.executeQuery(sql);
+            System.out.println(FlipTableConverters.fromResultSet(rs));
+            rs.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
 

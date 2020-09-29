@@ -1,15 +1,11 @@
 package com.company.samuraiSatan.dao;
 
 import com.company.samuraiSatan.models.Class;
-import com.jakewharton.fliptables.FlipTableConverters;
-import org.postgresql.core.SqlCommand;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ClassDao extends Dao {
 
@@ -28,9 +24,9 @@ public class ClassDao extends Dao {
     }
 
     private Class createClass(ResultSet results) throws SQLException {
-        int class_ID = results.getInt("Class_ID");
-        String class_Name = results.getString("ClassName");
-        return new Class(class_ID, class_Name);
+        int classID = results.getInt("Class_ID");
+        String className = results.getString("ClassName");
+        return new Class(classID, className);
     }
 
     public void addClass(Class classs) {
@@ -39,7 +35,7 @@ public class ClassDao extends Dao {
         String sql = "INSERT INTO classes (\"ClassName\") VALUES (?)";
         try {
             addClass = connection.prepareStatement(sql);
-            addClass.setString(1, classs.getClass_Name());
+            addClass.setString(1, classs.getClassName());
             addClass.executeUpdate();
             addClass.close();
             connection.close();

@@ -1,7 +1,6 @@
 package com.company.samuraiSatan.dao;
 
 import com.company.samuraiSatan.models.Artifact;
-import com.company.samuraiSatan.models.Quest;
 import com.jakewharton.fliptables.FlipTableConverters;
 
 import java.sql.PreparedStatement;
@@ -29,13 +28,13 @@ public class ArtifactDao extends Dao {
     }
 
     public Artifact createArtifact(ResultSet results) throws SQLException {
-        int artifact_ID = results.getInt("Artifact_ID");
-        String artifact_Name = results.getString("ArtifactName");
+        int artifactID = results.getInt("Artifact_ID");
+        String artifactName = results.getString("ArtifactName");
         int cost = results.getInt("Cost");
-        boolean is_Active = results.getBoolean("Is_Active");
+        boolean isActive = results.getBoolean("Is_Active");
         String description = results.getString("Description");
-        boolean is_Solo = results.getBoolean("Is_Solo");
-        return new Artifact(artifact_ID, artifact_Name, cost, is_Active, description, is_Solo);
+        boolean isSolo = results.getBoolean("Is_Solo");
+        return new Artifact(artifactID, artifactName, cost, isActive, description, isSolo);
     }
 
     public void addNewArtifact(Artifact artifact) {
@@ -44,11 +43,11 @@ public class ArtifactDao extends Dao {
         String sql = "INSERT INTO artifacts (\"ArtifactName\", \"Cost\", \"Is_Active\", \"Description\", \"Is_Solo\") VALUES (?, ?, ?, ?, ?)";
         try {
             addNewArtifact = connection.prepareStatement(sql);
-            addNewArtifact.setString(1, artifact.getArtifact_Name());
+            addNewArtifact.setString(1, artifact.getArtifactName());
             addNewArtifact.setInt(2, artifact.getCost());
-            addNewArtifact.setBoolean(3, artifact.getIs_Active());
+            addNewArtifact.setBoolean(3, artifact.getActive());
             addNewArtifact.setString(4, artifact.getDescription());
-            addNewArtifact.setBoolean(5, artifact.getIs_Solo());
+            addNewArtifact.setBoolean(5, artifact.getSolo());
             addNewArtifact.executeUpdate();
             addNewArtifact.close();
         } catch (SQLException e) {
@@ -73,13 +72,15 @@ public class ArtifactDao extends Dao {
     public void updateArtifact(Artifact artifact) {
         PreparedStatement editArtifact;
         connect();
-        String sql = "UPDATE artifacts SET \"ArtifactName\" = ?, \"Cost\" = ?, \"Description\" = ? WHERE \"Artifact_ID\" = ?";
+        String sql = "UPDATE artifacts SET \"ArtifactName\" = ?, \"Cost\" = ?, \"Is_Active\" = ?, \"Description\" = ?, \"Is_Solo\" = ? WHERE \"Artifact_ID\" = ?";
         try {
             editArtifact = connection.prepareStatement(sql);
-            editArtifact.setString(1, artifact.getArtifact_Name());
+            editArtifact.setString(1, artifact.getArtifactName());
             editArtifact.setInt(2, artifact.getCost());
-            editArtifact.setString(3, artifact.getDescription());
-            editArtifact.setInt(4, artifact.getArtifact_ID());
+            editArtifact.setBoolean(3, artifact.getActive());
+            editArtifact.setString(4, artifact.getDescription());
+            editArtifact.setBoolean(5,artifact.getSolo());
+            editArtifact.setInt(6, artifact.getArtifactID());
             editArtifact.executeUpdate();
             editArtifact.close();
             connection.close();
@@ -94,8 +95,8 @@ public class ArtifactDao extends Dao {
         String sql = "UPDATE artifacts SET \"Is_Solo\" = ? WHERE \"Artifact_ID\" = ?";
         try {
             splitArtifact = connection.prepareStatement(sql);
-            splitArtifact.setBoolean(1, artifact.getIs_Solo());
-            splitArtifact.setInt(2, artifact.getArtifact_ID());
+            splitArtifact.setBoolean(1, artifact.getSolo());
+            splitArtifact.setInt(2, artifact.getArtifactID());
             splitArtifact.executeUpdate();
             splitArtifact.close();
             connection.close();

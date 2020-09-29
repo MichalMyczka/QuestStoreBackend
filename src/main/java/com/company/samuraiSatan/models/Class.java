@@ -1,33 +1,28 @@
 package com.company.samuraiSatan.models;
 
-import com.company.samuraiSatan.IO;
-import com.company.samuraiSatan.dao.ClassDao;
-
 public class Class {
-    private int class_ID;
-    private String class_Name;
-    private final IO io = new IO();
-    private final ClassDao classDao = new ClassDao();
+    private int classID;
+    private String className;
 
-    public Class(int class_ID, String class_Name) {
-        this.class_ID = class_ID;
-        this.class_Name = class_Name;
+    public Class(int classID, String className) {
+        this.classID = classID;
+        this.className = className;
     }
 
-    public int getClass_ID() {
-        return class_ID;
+    public int getClassID() {
+        return classID;
     }
 
-    public String getClass_Name() {
-        return class_Name;
+    public String getClassName() {
+        return className;
     }
 
-    public void setClass_ID(int class_ID) {
-        this.class_ID = class_ID;
+    public void setClassID(int classID) {
+        this.classID = classID;
     }
 
-    public void setClass_Name(String class_Name) {
-        this.class_Name = class_Name;
+    public void setClass_Name(String className) {
+        this.className = className;
     }
 
 

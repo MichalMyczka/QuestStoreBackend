@@ -3,15 +3,28 @@ package com.company.samuraiSatan.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import java.sql.SQLException;
+import java.util.Map;
+
+import com.company.samuraiSatan.helpers.JSONreader;
 
 public abstract class Dao {
     protected Connection connection;
     protected Statement statement;
+    private JSONreader jsonReader;
+
+
+    public Dao() {
+        jsonReader = new JSONreader();
+    }
 
     public void connect() {
+        Map<String, String> data = jsonReader.JSONread();
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://ec2-52-208-175-161.eu-west-1.compute.amazonaws.com:5432/daae0lv8si0pu9?sslmode=require", "iblrlqtsxotcnc", "1fabaa390b31e5c4e896ba5e297d50c7cb93a04322b8a7db105ec699959cb1f9");
+            connection = DriverManager.getConnection(
+                    data.get("connection"),
+                    data.get("user"),
+                    data.get("password")
+                    );
             statement = connection.createStatement();
             System.out.println("polaczono z baza");
         } catch (Exception e) {

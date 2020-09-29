@@ -1,73 +1,65 @@
 package com.company.samuraiSatan.models;
 
-import com.company.samuraiSatan.IO;
-import com.company.samuraiSatan.dao.ArtifactDao;
-import com.company.samuraiSatan.dao.ClassDao;
-import com.company.samuraiSatan.dao.QuestDao;
-import com.company.samuraiSatan.dao.UserDao;
-
-import java.util.List;
-
 public class Quest {
 
-    private int quest_ID;
-    private String quest_Name;
+    private int questID;
+    private String questName;
     private int reward;
-    private boolean is_Active;
+    private boolean isActive;
     private String description;
-    private boolean is_Basic;
+    private boolean isBasic;
 
-    public Quest(int quest_ID, String name, int reward, boolean is_Active, String description, boolean is_Basic) {
-        this.quest_ID = quest_ID;
-        this.quest_Name = name;
+    public Quest(int questID, String name, int reward, boolean isActive, String description, boolean isBasic) {
+        this.questID = questID;
+        this.questName = name;
         this.reward = reward;
-        this.is_Active = is_Active;
+        this.isActive = isActive;
         this.description = description;
-        this.is_Basic = is_Basic;
+        this.isBasic = isBasic;
     }
 
-    public int getQuest_ID() {
-        return quest_ID;
+    public int getQuestID() {
+        return questID;
     }
 
-    public String getQuest_Name() {
-        return quest_Name;
+    public String getQuestName() {
+        return questName;
     }
 
     public int getReward() {
         return reward;
     }
 
-    public boolean isIs_Active() {
-        return is_Active;
+    public boolean getIsActive() {
+        return isActive;
     }
 
     public String getDescription() {
         return description;
     }
     
-    public boolean getIs_Basic() {
-        return is_Basic;
+    public boolean getIsBasic() {
+        return isBasic;
     }
 
     public void setName(String name) {
-        this.quest_Name = name;
+        this.questName = name;
     }
 
     public void setReward(int reward) {
         this.reward = reward;
     }
 
-    public void setIs_Active(boolean is_Active) {
-        this.is_Active = is_Active;
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setIs_Basic(boolean is_Basic) {
-        this.is_Basic = is_Basic;
+    public void setIsBasic(boolean isBasic) {
+        this.isBasic = isBasic;
     }
 
 }
