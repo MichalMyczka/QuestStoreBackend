@@ -1,3 +1,4 @@
+
 package com.company.samuraiSatan;
 
 import com.company.samuraiSatan.controller.*;
@@ -18,6 +19,7 @@ public class App {
         server.createContext("/creepAddClass", new AddClassHandler());
         server.createContext("/creepEditMentor", new MentorEditHandler());
         server.createContext("/seeMentorProfile", new SeeMentorProfileHandler());
+        server.createContext("/mentorAddUser", new mentorAddCodeCoolerHandler());
         server.createContext("/addQuest", new QuestAddHandler());
         server.createContext("/updateQuest", new QuestUpdateHandler());
         server.createContext("/mentorAddArtifact", new AddArtifactHandler());
