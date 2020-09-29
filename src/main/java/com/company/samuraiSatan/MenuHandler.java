@@ -66,15 +66,15 @@ public class MenuHandler {
         User user = userDao.getUser(email, password);
         isLogin = true;
         switch (user.getRoleID()) {
-            case 1 -> {
+            case 1: {
                 initializeStudentMenu(user);
                 studentPanel();
             }
-            case 2 -> {
+            case 2: {
                 initializeMentorMenu(user);
                 mentorPanel();
             }
-            case 3 -> {
+            case 3: {
                 initializeCreepMenu(user);
                 creepPanel();
             }
