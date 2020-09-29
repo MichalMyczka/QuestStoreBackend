@@ -29,15 +29,15 @@ public class mentorAddCodeCoolerHandler implements HttpHandler {
 
                 Map<String, String> data = Parser.parseFormData(br.readLine());
 
-//                String name = data.get("name");
-//                String surname = data.get("surname");
+                String cName = data.get("cName");
+                //String surname = data.get("surname");
                 String email = data.get("email");
                 //int phone = Integer.parseInt(data.get("phone"));
 
                 /*
                     CHANGE ID
                  */
-                User user = new User(7, "ccTestName", "ccTestSurname", email, 666, "password",
+                User user = new User(0, cName, "testnrdwasurname", email, 789, "bakomatwojastara",
                         2, true, 2,1, 0  );
 
                 userDao.addUser(user);
