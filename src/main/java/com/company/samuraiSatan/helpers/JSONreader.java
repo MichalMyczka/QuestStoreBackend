@@ -3,7 +3,6 @@ package com.company.samuraiSatan.helpers;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,11 +20,7 @@ public class JSONreader {
             connectionData.put("connection", (String) jsonObject.get("connection"));
             connectionData.put("user", (String) jsonObject.get("user"));
             connectionData.put("password", (String) jsonObject.get("password"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
         return connectionData;

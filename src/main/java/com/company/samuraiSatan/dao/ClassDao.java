@@ -1,15 +1,11 @@
 package com.company.samuraiSatan.dao;
 
 import com.company.samuraiSatan.models.Class;
-import com.jakewharton.fliptables.FlipTableConverters;
-import org.postgresql.core.SqlCommand;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ClassDao extends Dao {
 

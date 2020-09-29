@@ -12,12 +12,12 @@ import java.net.HttpCookie;
 import java.util.Map;
 
 public class LoginHandler implements HttpHandler {
-//    ReadHtml readHtml = new ReadHtml();
+
     UserDao userDao = new UserDao();
     private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        String response = null;
+
         try {
             String method = httpExchange.getRequestMethod();
             if(method.equals("POST")) {

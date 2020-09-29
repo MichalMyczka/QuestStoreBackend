@@ -20,7 +20,6 @@ public class UpdateArtifactHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        String response = null;
 
         try {
             String method = httpExchange.getRequestMethod();

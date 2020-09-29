@@ -20,7 +20,7 @@ public class QuestUpdateHandler implements HttpHandler {
     private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        String response = null;
+
         try {
             String method = httpExchange.getRequestMethod();
             if(method.equals("GET")){

@@ -1,9 +1,6 @@
 package com.company.samuraiSatan.dao;
 
-import com.company.samuraiSatan.models.Artifact;
-import com.company.samuraiSatan.models.Class;
 import com.company.samuraiSatan.models.ExperienceLvl;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

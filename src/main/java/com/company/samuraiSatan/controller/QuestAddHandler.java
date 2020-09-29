@@ -1,10 +1,8 @@
 package com.company.samuraiSatan.controller;
 
 import com.company.samuraiSatan.dao.QuestDao;
-import com.company.samuraiSatan.dao.UserDao;
 import com.company.samuraiSatan.helpers.Parser;
 import com.company.samuraiSatan.models.Quest;
-import com.company.samuraiSatan.models.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -21,7 +19,7 @@ public class QuestAddHandler implements HttpHandler {
     private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        String response = null;
+
         try {
             String method = httpExchange.getRequestMethod();
             if(method.equals("POST")) {

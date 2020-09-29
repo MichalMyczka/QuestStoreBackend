@@ -2,11 +2,7 @@ package com.company.samuraiSatan.models;
 
 import com.company.samuraiSatan.IO;
 import com.company.samuraiSatan.dao.*;
-import com.jakewharton.fliptables.FlipTable;
-
-import java.sql.SQLException;
 import java.util.List;
-import java.util.ArrayList;
 
 public class User {
     private int userID;
@@ -131,13 +127,9 @@ public class User {
         String email = io.gatherInput("Enter user email: ");
         int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
         String password = io.gatherInput("Enter user password: ");
-        int role = 2;
-        boolean is_Active = true;
         int userClassID = io.gatherIntInput("Enter user class ID: ",0, Integer.MAX_VALUE);
-        int experienceLvlID = 1;
-        int totalBalance = 0;
         try {
-            User user = new User(0, name, surname, email, phone, password, role, isActive, userClassID, experienceLvlID, totalBalance);
+            User user = new User(0, name, surname, email, phone, password, 2, true, userClassID, 1, 0);
             userDao.addUser(user);
             io.gatherEmptyInput("Account successfully created!\nPress any ket to back to main menu");
         } catch (Exception e) {
@@ -200,13 +192,8 @@ public class User {
         String password = io.gatherInput("Enter user password: ");
         int phone = io.gatherIntInput("Enter user phone: ",0, Integer.MAX_VALUE);
         String email = io.gatherInput("Enter user email: ");
-        int role = 1;
-        int totalBalance = 0;
-        boolean isActive = true;
-        int userClassID = 1;
-        int experienceLvlID = 1;
         try {
-            User user = new User(0, name, surname, email, phone, password, role, isActive, userClassID, experienceLvlID, totalBalance);
+            User user = new User(0, name, surname, email, phone, password, 1, true, 1, 1, 0);
             userDao.addUser(user);
             io.gatherEmptyInput("Account successfully created!\nPress any ket to back to main menu");
         } catch (Exception e) {
@@ -218,10 +205,8 @@ public class User {
         String name = io.gatherInput("Enter quest name: ");
         int reward = io.gatherIntInput("Enter reward: ", 0, Integer.MAX_VALUE);
         String description = io.gatherInput("Enter quest description: ");
-        boolean isActive = true;
-        boolean isBasic = false;
         try {
-            Quest quest = new Quest(0, name, reward, isActive, description, isBasic);
+            Quest quest = new Quest(0, name, reward, true, description, false);
             questDao.addQuest(quest);
             io.gatherEmptyInput("Quest successfully created!\nPress any ket to back to main menu");
         } catch (Exception e) {
@@ -233,10 +218,8 @@ public class User {
         String name = io.gatherInput("Enter artifact name: ");
         int cost = io.gatherIntInput("Enter cost: ", 0, Integer.MAX_VALUE);
         String description = io.gatherInput("Enter Artifact description: ");
-        boolean isActive = true;
-        boolean isSolo = false;
         try {
-            Artifact artifact = new Artifact(0, name, cost, isActive, description, isSolo);
+            Artifact artifact = new Artifact(0, name, cost, true, description, false);
             artifactDao.addNewArtifact(artifact);
             io.gatherEmptyInput("Artifact successfully created!\nPress any ket to back to main menu");
         } catch (Exception e) {

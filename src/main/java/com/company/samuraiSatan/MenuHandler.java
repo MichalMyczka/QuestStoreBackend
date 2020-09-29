@@ -66,18 +66,18 @@ public class MenuHandler {
         User user = userDao.getUser(email, password);
         isLogin = true;
         switch (user.getRoleID()) {
-            case 1:
+            case 1 -> {
                 initializeStudentMenu(user);
                 studentPanel();
-                break;
-            case 2:
+            }
+            case 2 -> {
                 initializeMentorMenu(user);
                 mentorPanel();
-                break;
-            case 3:
+            }
+            case 3 -> {
                 initializeCreepMenu(user);
                 creepPanel();
-                break;
+            }
         }
     }
 
@@ -86,7 +86,6 @@ public class MenuHandler {
     }
 
 //----------------------------------------------------------------------------------------------------------------------
-//funkcje tutaj czy gdzies indziej???
     private void initializeCreepMenu(User user) {
         creepMenu = new HashMap<>();
         creepMenu.put(1, user::createNewMentor);
@@ -106,7 +105,6 @@ public class MenuHandler {
     }
 
 //----------------------------------------------------------------------------------------------------------------------
-//funkcje tutaj czy gdzies indziej???
     private void initializeMentorMenu(User user) {
         mentorMenu = new HashMap<>();
         mentorMenu.put(1, user::createNewCodecooler);
@@ -194,7 +192,6 @@ public class MenuHandler {
     }
 
 //----------------------------------------------------------------------------------------------------------------------
-//funkcje tutaj czy gdzies indziej???
     private void initializeStudentMenu(User user) {
         studentMenu = new HashMap<>();
         studentMenu.put(1, userDao::showCodecoolerExp);

@@ -1,7 +1,6 @@
 package com.company.samuraiSatan.dao;
 
 import com.company.samuraiSatan.models.Artifact;
-import com.company.samuraiSatan.models.Quest;
 import com.jakewharton.fliptables.FlipTableConverters;
 
 import java.sql.PreparedStatement;

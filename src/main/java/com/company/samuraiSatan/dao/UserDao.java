@@ -1,9 +1,7 @@
 package com.company.samuraiSatan.dao;
 
-import com.company.samuraiSatan.models.Quest;
 import com.company.samuraiSatan.models.User;
 import com.jakewharton.fliptables.FlipTableConverters;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +30,7 @@ public class UserDao extends Dao {
         String userName = results.getString("Name");
         String userSurname = results.getString("Surname");
         String email = results.getString("Email");
-        Integer phone = results.getInt("Phone");
+        int phone = results.getInt("Phone");
         String password = results.getString("Password");
         int roleID = results.getInt("Role_ID");
         int totalBalance = results.getInt("TotalBalance");
@@ -95,7 +93,6 @@ public class UserDao extends Dao {
         connect();
         try {
             ResultSet rs = statement.executeQuery(sql);
-    //        System.out.println(FlipTableConverters.fromResultSet(rs));
             rs.close();
             statement.close();
             connection.close();
