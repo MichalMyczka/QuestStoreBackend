@@ -24,6 +24,7 @@ public class App {
         server.createContext("/updateQuest", new QuestUpdateHandler());
         server.createContext("/mentorAddArtifact", new AddArtifactHandler());
         server.createContext("/updateArtifact", new UpdateArtifactHandler());
+        server.createContext("/seeCodecoolerProfile", new SeeCodecoolerProfileHandler());
 
         server.setExecutor(null);
         server.start();

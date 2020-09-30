@@ -34,9 +34,10 @@ public class MentorAddCodeCoolerHandler implements HttpHandler {
                 String email = data.get("email");
                 String cPassword = data.get("cPassword");
                 int cPhone = Integer.parseInt(data.get("cPhone"));
+                int cClass = Integer.parseInt(data.get("cClass"));
 
                 User user = new User(0, cName, cSurname, email, cPhone, cPassword,
-                        1, true, 1,2, 0  );
+                        1, true, cClass,2, 0  );
 
                 userDao.addUser(user);
 
