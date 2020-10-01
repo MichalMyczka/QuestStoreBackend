@@ -25,9 +25,10 @@ public class App {
         server.createContext("/mentorAddArtifact", new AddArtifactHandler());
         server.createContext("/updateArtifact", new UpdateArtifactHandler());
         server.createContext("/seeCodecoolerProfile", new SeeCodecoolerProfileHandler());
-
         server.createContext("/codecoolerShowQuests", new QuestUpdateHandler());
         server.createContext("/codecoolerAddQuests", new ActivateQuestHandler());
+        server.createContext("/codecoolerActivateSoloArtifacts", new ActivateSoloArtifactHandler());
+        server.createContext("/codecoolerActivateGroupArtifacts", new ActivateGroupArtifactHandler());
 
         server.setExecutor(null);
         server.start();
