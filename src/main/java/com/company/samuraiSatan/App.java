@@ -29,6 +29,7 @@ public class App {
         server.createContext("/codecoolerAddQuests", new ActivateQuestHandler());
         server.createContext("/codecoolerActivateSoloArtifacts", new ActivateSoloArtifactHandler());
         server.createContext("/codecoolerActivateGroupArtifacts", new ActivateGroupArtifactHandler());
+        server.createContext("/codecoolerQuestManager", new CodecoolerQuestManager());
 
         server.setExecutor(null);
         server.start();
